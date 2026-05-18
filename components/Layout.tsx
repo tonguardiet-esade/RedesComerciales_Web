@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import CommunicationsCenter from './CommunicationsCenter';
 import MarketingSupportModal from './MarketingSupportModal';
 import ContactModal from './ContactModal';
+import { EXTERNAL_LINKS } from '../config/externalLinks';
 
 interface LayoutProps {
   children?: React.ReactNode;
@@ -168,20 +169,20 @@ const Layout = ({ children }: LayoutProps) => {
               >
                 Casos de éxito
               </button>
-              <a 
-                href="https://ai.studio/apps/1b686564-1891-4307-b1d9-876dd09cb85e"
-                target="_blank"
-                rel="noreferrer"
-                className={`px-5 py-2.5 rounded-xl font-bold text-sm transition-all ${theme === 'dark' ? 'text-white hover:bg-white/5' : 'text-brand-dark hover:bg-gray-50'}`}
-              >
-                Plataforma
-              </a>
               <button 
                 onClick={() => setIsContactOpen(true)}
-                className="px-5 py-2.5 bg-brand-primary text-white rounded-xl font-bold text-sm hover:scale-105 transition-all shadow-lg shadow-brand-primary/20"
+                className={`px-5 py-2.5 rounded-xl font-bold text-sm transition-all ${theme === 'dark' ? 'text-white hover:bg-white/5' : 'text-brand-dark hover:bg-gray-50'}`}
               >
                 Contacto
               </button>
+              <a 
+                href={EXTERNAL_LINKS.sales}
+                target="_blank"
+                rel="noreferrer"
+                className="px-5 py-2.5 bg-brand-primary text-white rounded-xl font-bold text-sm hover:scale-105 transition-all shadow-lg shadow-brand-primary/20"
+              >
+                Plataforma
+              </a>
               {user ? (
                 <>
                   <div className="hidden md:flex flex-col text-right">
@@ -191,12 +192,14 @@ const Layout = ({ children }: LayoutProps) => {
                   <button onClick={handleLogout} className="text-sm font-bold text-gray-400 hover:text-brand-primary transition-colors">{t('nav.logout')}</button>
                 </>
               ) : (
-                <button 
-                  onClick={() => navigate('/login')}
+                <a 
+                  href={EXTERNAL_LINKS.plataforma}
+                  target="_blank"
+                  rel="noreferrer"
                   className="px-5 py-2.5 bg-brand-secondary text-white rounded-xl font-bold text-sm hover:scale-105 transition-all shadow-lg shadow-brand-secondary/20"
                 >
                   Acceder
-                </button>
+                </a>
               )}
             </nav>
           </div>
@@ -237,8 +240,8 @@ const Layout = ({ children }: LayoutProps) => {
                 <li><button onClick={() => navigate('/soluciones')} className="hover:text-brand-primary transition-colors">Soluciones</button></li>
                 <li><button onClick={() => navigate('/metodologia')} className="hover:text-brand-primary transition-colors">Metodología</button></li>
                 <li><button onClick={() => navigate('/casos-de-exito')} className="hover:text-brand-primary transition-colors">Casos de éxito</button></li>
-                <li><a href="https://ai.studio/apps/1b686564-1891-4307-b1d9-876dd09cb85e" target="_blank" rel="noreferrer" className="hover:text-brand-primary transition-colors">Plataforma</a></li>
                 <li><button onClick={() => setIsContactOpen(true)} className="hover:text-brand-primary transition-colors">Contacto</button></li>
+                <li><a href={EXTERNAL_LINKS.sales} target="_blank" rel="noreferrer" className="hover:text-brand-primary transition-colors">Plataforma</a></li>
                 <li><a href="https://newsletter.redescomerciales.ai" target="_blank" rel="noreferrer" className="inline-flex items-center px-4 py-2 rounded-full bg-brand-primary text-white text-xs font-bold hover:bg-brand-secondary transition-all">Acceder a nuestra newsletter</a></li>
               </ul>
             </div>
