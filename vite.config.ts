@@ -9,6 +9,8 @@ export default defineConfig(({ mode }) => {
       server: {
         port: 3000,
         host: '0.0.0.0',
+        /** Evita colisión con Sales (3001) si el puerto 3000 está ocupado */
+        strictPort: true,
       },
       plugins: [react(), tailwindcss()],
       define: {
@@ -19,6 +21,18 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
+      },
+      build: {
+        rollupOptions: {
+          output: {
+            manualChunks: {
+              'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+              'vendor-gsap': ['gsap', '@gsap/react'],
+              'vendor-motion': ['motion/react'],
+              'vendor-three': ['three'],
+            },
+          },
+        },
       }
     };
 });

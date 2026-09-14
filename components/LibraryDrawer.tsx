@@ -19,33 +19,32 @@ const LibraryDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex flex-col bg-white dark:bg-brand-darkBg animate-fade-in">
-      {/* Header a pantalla completa */}
-      <div className="p-8 md:p-12 border-b dark:border-white/5 flex justify-between items-center bg-white dark:bg-brand-darkCard shadow-sm shrink-0">
-        <div className="max-w-7xl mx-auto w-full flex justify-between items-center">
-          <div className="flex items-center gap-6">
+    <div className="fixed inset-0 z-[100] flex flex-col bg-mosaic-white-200 animate-fade-in">
+      <div className="p-6 md:p-10 border-b border-mosaic-white-300 flex justify-between items-center bg-mosaic-white-100 shrink-0">
+        <div className="max-w-7xl mx-auto w-full flex justify-between items-center gap-4">
+          <div className="flex items-center gap-4 md:gap-6 min-w-0">
             {activeView !== 'index' && (
-              <button 
+              <button
+                type="button"
                 onClick={() => setActiveView('index')}
-                className="w-12 h-12 flex items-center justify-center rounded-2xl bg-gray-100 dark:bg-gray-800 hover:bg-brand-primary hover:text-white transition-all shadow-md group"
+                className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-mosaic-white-200 border border-mosaic-white-300 hover:border-mosaic-cyan hover:text-mosaic-cyan transition-colors shrink-0"
               >
-                <svg className="w-6 h-6 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
-                </svg>
+                ←
               </button>
             )}
-            <div>
-              <h2 className="text-3xl font-black text-brand-dark dark:text-white uppercase tracking-tighter">
-                {activeView === 'index' ? 'Biblioteca de Éxito' : 
-                 activeView === 'good_opportunity' ? 'Filtro de Oportunidades' : 
-                 activeView === 'bad_opportunity' ? 'Criterios de Exclusión' : 'Kit de Comunicación'}
+            <div className="min-w-0">
+              <h2 className="mosaic-h4 truncate">
+                {activeView === 'index' ? 'Biblioteca de éxito' :
+                 activeView === 'good_opportunity' ? 'Filtro de oportunidades' :
+                 activeView === 'bad_opportunity' ? 'Criterios de exclusión' : 'Kit de comunicación'}
               </h2>
-              <p className="text-xs font-bold text-gray-400 dark:text-gray-300 uppercase tracking-widest mt-1">Recursos estratégicos para Ejemplos de venta</p>
+              <p className="mosaic-label text-mosaic-black-300 mt-1">Recursos estratégicos para Ejemplos de venta</p>
             </div>
           </div>
-          <button 
+          <button
+            type="button"
             onClick={handleClose}
-            className="w-14 h-14 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-red-500 hover:text-white transition-all text-xl font-bold shadow-lg"
+            className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center border border-mosaic-white-300 hover:border-mosaic-cyan hover:text-mosaic-cyan transition-colors shrink-0"
             aria-label="Cerrar biblioteca"
           >
             ✕
@@ -53,20 +52,19 @@ const LibraryDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
         </div>
       </div>
 
-      {/* Contenido principal */}
-      <div className="flex-1 overflow-y-auto custom-scrollbar bg-gray-50/30 dark:bg-brand-darkBg">
+      <div className="flex-1 overflow-y-auto custom-scrollbar">
         {activeView === 'index' && (
           <div className="max-w-5xl mx-auto p-8 md:p-16 space-y-12 animate-fade-in-up">
-            <div className="bg-brand-primary/10 p-10 rounded-[3rem] border-2 border-brand-primary/20 shadow-xl">
-              <h3 className="text-brand-primary font-black uppercase tracking-widest text-sm mb-4">Misión del Ejemplos de venta</h3>
-              <p className="text-xl text-brand-dark dark:text-gray-200 font-medium leading-relaxed">
+            <div className="bg-mosaic-cyan/10 p-8 md:p-10 border border-mosaic-cyan/20">
+              <h3 className="mosaic-label text-mosaic-cyan mb-4">Misión del Ejemplos de venta</h3>
+              <p className="mosaic-body text-sm md:text-base">
                 Tu éxito depende de la calidad de tus referencias. Utiliza estas guías rápidas para filtrar oportunidades y presentar el ecosistema con la máxima autoridad.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-8">
-                <h3 className="text-xs font-black text-gray-400 dark:text-gray-300 uppercase tracking-[0.3em] ml-4">Guías de Identificación</h3>
+                <h3 className="mosaic-label text-mosaic-black-300 ml-2">Guías de identificación</h3>
                 <div className="space-y-6">
                   <LibraryItem 
                     icon="✅" 
@@ -84,7 +82,7 @@ const LibraryDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
               </div>
 
               <div className="space-y-8">
-                <h3 className="text-xs font-black text-gray-400 dark:text-gray-300 uppercase tracking-[0.3em] ml-4">Herramientas de Comunicación</h3>
+                <h3 className="mosaic-label text-mosaic-black-300 ml-2">Herramientas de comunicación</h3>
                 <div className="space-y-6">
                   <LibraryItem 
                     icon="⏱️" 
@@ -101,17 +99,17 @@ const LibraryDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
         {activeView === 'pitch_30s' && (
           <div className="max-w-4xl mx-auto p-8 md:p-16 space-y-16 animate-fade-in">
             <section className="space-y-6">
-              <h3 className="text-sm font-black text-brand-primary uppercase tracking-[0.3em]">El Pitch de 30 Segundos</h3>
-              <div className="bg-white dark:bg-brand-darkCard p-10 rounded-[3rem] border-2 border-brand-primary shadow-2xl relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-brand-primary/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform"></div>
-                <p className="text-2xl md:text-3xl text-brand-dark dark:text-white font-bold leading-tight italic">
+              <h3 className="text-sm font-black text-mosaic-cyan uppercase tracking-[0.3em]">El Pitch de 30 Segundos</h3>
+              <div className="bg-mosaic-white-100 border border-mosaic-white-300 p-10 rounded-[3rem] border-2 border-mosaic-cyan shadow-2xl relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-mosaic-cyan/5 -mr-16 -mt-16" />
+                <p className="mosaic-h4 italic">
                   "Ayudamos a empresas a captar financiación pública no reembolsable usando Inteligencia Artificial para acelerar el proceso un 90% con seguridad total."
                 </p>
               </div>
             </section>
 
             <section className="space-y-8">
-              <h3 className="text-sm font-black text-brand-primary uppercase tracking-[0.3em]">Preguntas y Respuestas Reales</h3>
+              <h3 className="text-sm font-black text-mosaic-cyan uppercase tracking-[0.3em]">Preguntas y Respuestas Reales</h3>
               <div className="grid gap-6">
                 <QAItem 
                   q="¿Es seguro usar IA con mis datos?" 
@@ -129,7 +127,7 @@ const LibraryDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
             </section>
 
             <section className="space-y-8">
-              <h3 className="text-sm font-black text-brand-primary uppercase tracking-[0.3em]">Microcontenidos Reutilizables</h3>
+              <h3 className="text-sm font-black text-mosaic-cyan uppercase tracking-[0.3em]">Microcontenidos Reutilizables</h3>
               <div className="grid md:grid-cols-2 gap-8">
                 <CopyBlock 
                   label="Para WhatsApp / Telegram"
@@ -147,8 +145,8 @@ const LibraryDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
         {activeView === 'good_opportunity' && (
           <div className="max-w-4xl mx-auto p-8 md:p-16 space-y-16 animate-fade-in">
             <section className="space-y-8">
-              <h3 className="text-sm font-black text-brand-primary uppercase tracking-[0.3em]">Checklist de Cualificación</h3>
-              <div className="bg-white dark:bg-brand-darkCard p-10 rounded-[3rem] border border-gray-100 dark:border-white/5 shadow-2xl space-y-6">
+              <h3 className="text-sm font-black text-mosaic-cyan uppercase tracking-[0.3em]">Checklist de Cualificación</h3>
+              <div className="bg-mosaic-white-100 border border-mosaic-white-300 p-8 md:p-10 space-y-4">
                 <CheckItem text="Empresa legalmente constituida (SL o SA)." />
                 <CheckItem text="Mínimo 10 empleados en plantilla." />
                 <CheckItem text="Facturación anual superior a 500.000€." />
@@ -159,8 +157,8 @@ const LibraryDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
 
             <section className="space-y-8">
               <div className="flex justify-between items-end">
-                <h3 className="text-sm font-black text-brand-primary uppercase tracking-[0.3em]">Ejemplos Reales de Éxito</h3>
-                <span className="text-[10px] font-bold text-gray-400 dark:text-gray-300 uppercase tracking-widest">3 casos de uso comunes</span>
+                <h3 className="text-sm font-black text-mosaic-cyan uppercase tracking-[0.3em]">Ejemplos Reales de Éxito</h3>
+                <span className="mosaic-label text-mosaic-black-300">3 casos de uso comunes</span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <ExampleCard 
@@ -191,7 +189,7 @@ const LibraryDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
             {/* RED FLAGS CHECKLIST */}
             <section className="space-y-8">
               <h3 className="text-sm font-black text-red-500 uppercase tracking-[0.3em]">Red Flags (Criterios de Exclusión)</h3>
-              <div className="bg-white dark:bg-brand-darkCard p-10 rounded-[3rem] border border-red-100 dark:border-red-900/20 shadow-2xl space-y-6">
+              <div className="bg-mosaic-white-100 border border-red-200 p-8 md:p-10 space-y-4">
                 <CheckItem text="Particulares (Personas físicas sin actividad profesional)." isNegative />
                 <CheckItem text="Empresas con deudas activas no aplazadas con Hacienda o Seg. Social." isNegative />
                 <CheckItem text="Micro-negocios con menos de 3 empleados y facturación residual." isNegative />
@@ -204,7 +202,7 @@ const LibraryDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
             <section className="space-y-8">
               <div className="flex justify-between items-end">
                 <h3 className="text-sm font-black text-red-500 uppercase tracking-[0.3em]">Ejemplos de Malos Leads</h3>
-                <span className="text-[10px] font-bold text-gray-400 dark:text-gray-300 uppercase tracking-widest">Ahorra tiempo detectando estos casos</span>
+                <span className="mosaic-label text-mosaic-black-300">Ahorra tiempo detectando estos casos</span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <ExampleCard 
@@ -234,15 +232,15 @@ const LibraryDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
         )}
       </div>
 
-      {/* Footer pantalla completa */}
-      <div className="p-10 border-t dark:border-white/5 bg-white dark:bg-brand-darkCard text-center">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[11px] font-bold text-gray-400 dark:text-gray-300 uppercase tracking-widest">Contenido exclusivo para Miembros del Ecosistema</p>
-          <button 
+      <div className="p-6 md:p-10 border-t border-mosaic-white-300 bg-mosaic-white-100 text-center">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="mosaic-label text-mosaic-black-300">Contenido exclusivo para miembros del ecosistema</p>
+          <button
+            type="button"
             onClick={activeView === 'index' ? onClose : () => setActiveView('index')}
-            className="px-12 py-4 bg-brand-dark dark:bg-gray-800 text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] shadow-xl hover:bg-brand-primary transition-all active:scale-95"
+            className="px-8 py-3 bg-mosaic-black-500 text-mosaic-white-100 mosaic-label hover:bg-mosaic-cyan transition-colors"
           >
-            {activeView === 'index' ? 'Volver al Dashboard' : 'Volver a Biblioteca'}
+            {activeView === 'index' ? 'Volver al dashboard' : 'Volver a biblioteca'}
           </button>
         </div>
       </div>
@@ -251,50 +249,49 @@ const LibraryDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
 };
 
 const LibraryItem = ({ icon, title, desc, onClick }: { icon: string, title: string, desc: string, onClick: () => void }) => (
-  <div 
+  <div
     onClick={onClick}
-    className="flex flex-col gap-5 p-8 bg-white dark:bg-brand-darkCard rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-card hover:shadow-2xl hover:border-brand-primary/40 transition-all cursor-pointer group"
+    data-cursor="pointer"
+    className="flex flex-col gap-4 p-6 md:p-8 bg-mosaic-white-100 border border-mosaic-white-300 hover:border-mosaic-cyan transition-colors cursor-pointer group"
   >
-    <div className="w-14 h-14 rounded-2xl bg-gray-50 dark:bg-brand-darkBg flex items-center justify-center text-3xl shrink-0 group-hover:scale-110 group-hover:bg-brand-primary/10 transition-all shadow-sm">
+    <div className="w-12 h-12 bg-mosaic-white-200 border border-mosaic-white-300 flex items-center justify-center text-2xl shrink-0 group-hover:border-mosaic-cyan transition-colors">
       {icon}
     </div>
     <div>
-      <h4 className="text-xl font-black text-brand-dark dark:text-white leading-tight mb-3 uppercase tracking-tighter">{title}</h4>
-      <p className="text-sm text-gray-500 dark:text-gray-200 leading-relaxed font-medium">{desc}</p>
+      <h4 className="mosaic-h5 mb-2">{title}</h4>
+      <p className="mosaic-body text-sm">{desc}</p>
     </div>
-    <div className="pt-4 mt-auto">
-        <span className="text-[10px] font-black text-brand-primary uppercase tracking-widest group-hover:translate-x-2 transition-transform inline-block">Ver recurso →</span>
-    </div>
+    <span className="mosaic-label text-mosaic-cyan group-hover:translate-x-1 transition-transform inline-block">Ver recurso →</span>
   </div>
 );
 
 const CheckItem = ({ text, isNegative }: { text: string, isNegative?: boolean }) => (
-  <div className={`flex items-center gap-4 p-4 rounded-2xl transition-colors border border-transparent ${isNegative ? 'hover:bg-red-50 dark:hover:bg-red-900/10 hover:border-red-500/10' : 'hover:bg-gray-50 dark:hover:bg-gray-800/50 hover:border-brand-primary/10'}`}>
-    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${isNegative ? 'bg-red-100 text-red-500' : 'bg-brand-secondary/20 text-brand-secondary'}`}>
+  <div className={`flex items-center gap-4 p-4 border border-transparent ${isNegative ? 'hover:border-red-200' : 'hover:border-mosaic-cyan/20'}`}>
+    <div className={`w-6 h-6 flex items-center justify-center text-xs ${isNegative ? 'bg-red-100 text-red-500' : 'bg-mosaic-green/20 text-mosaic-green'}`}>
       {isNegative ? '✕' : '✓'}
     </div>
-    <p className="text-sm font-bold text-gray-700 dark:text-gray-200">{text}</p>
+    <p className="mosaic-body text-sm text-mosaic-black-400">{text}</p>
   </div>
 );
 
 const ExampleCard = ({ sector, icon, title, desc, isNegative }: { sector: string, icon: string, title: string, desc: string, isNegative?: boolean }) => (
-  <div className={`bg-white dark:bg-brand-darkCard p-8 rounded-[2.5rem] border shadow-lg hover:shadow-2xl transition-all group ${isNegative ? 'border-red-50 dark:border-red-900/20' : 'border-gray-100 dark:border-white/5'}`}>
-    <div className={`text-[10px] font-black uppercase tracking-[0.2em] mb-4 ${isNegative ? 'text-red-400' : 'text-brand-primary'}`}>{sector}</div>
-    <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{icon}</div>
-    <h4 className="text-lg font-black text-brand-dark dark:text-white mb-2 leading-tight">{title}</h4>
-    <p className="text-xs text-gray-500 dark:text-gray-200 leading-relaxed font-medium">{desc}</p>
+  <div className={`bg-mosaic-white-100 p-6 border transition-colors ${isNegative ? 'border-red-200' : 'border-mosaic-white-300 hover:border-mosaic-cyan'}`}>
+    <div className={`mosaic-label mb-3 ${isNegative ? 'text-red-400' : 'text-mosaic-cyan'}`}>{sector}</div>
+    <div className="text-3xl mb-3">{icon}</div>
+    <h4 className="mosaic-h5 mb-2">{title}</h4>
+    <p className="mosaic-body text-xs">{desc}</p>
   </div>
 );
 
 const QAItem = ({ q, a }: { q: string, a: string }) => (
-  <div className="bg-white dark:bg-brand-darkCard p-8 rounded-3xl border border-gray-100 dark:border-white/5 shadow-sm hover:border-brand-primary/20 transition-all">
+  <div className="bg-mosaic-white-100 p-6 border border-mosaic-white-300 hover:border-mosaic-cyan/30 transition-colors">
     <div className="flex gap-4 mb-4">
-      <span className="w-8 h-8 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center font-black text-xs">P</span>
-      <h4 className="text-lg font-bold text-brand-dark dark:text-white leading-tight">{q}</h4>
+      <span className="w-8 h-8 bg-mosaic-cyan/10 text-mosaic-cyan flex items-center justify-center mosaic-label text-xs">P</span>
+      <h4 className="mosaic-body text-sm text-mosaic-black-500">{q}</h4>
     </div>
     <div className="flex gap-4">
-      <span className="w-8 h-8 rounded-lg bg-brand-secondary/10 text-brand-secondary flex items-center justify-center font-black text-xs">R</span>
-      <p className="text-sm text-gray-500 dark:text-gray-200 leading-relaxed font-medium">{a}</p>
+      <span className="w-8 h-8 bg-mosaic-green/10 text-mosaic-green flex items-center justify-center mosaic-label text-xs">R</span>
+      <p className="mosaic-body text-sm">{a}</p>
     </div>
   </div>
 );
@@ -310,19 +307,20 @@ const CopyBlock = ({ label, content }: { label: string, content: string }) => {
 
   return (
     <div className="space-y-3">
-      <div className="flex justify-between items-center px-4">
-        <span className="text-[10px] font-black text-gray-400 dark:text-gray-300 uppercase tracking-widest">{label}</span>
-        <button 
+      <div className="flex justify-between items-center px-2">
+        <span className="mosaic-label text-mosaic-black-300">{label}</span>
+        <button
+          type="button"
           onClick={handleCopy}
-          className={`text-[9px] font-black uppercase px-3 py-1 rounded-lg transition-all ${copied ? 'bg-blue-50 text-white' : 'bg-brand-primary/10 text-brand-primary hover:bg-brand-primary hover:text-white'}`}
+          className={`mosaic-label px-3 py-1 border transition-colors ${
+            copied ? 'bg-mosaic-cyan text-mosaic-white-100 border-mosaic-cyan' : 'border-mosaic-white-300 text-mosaic-cyan hover:bg-mosaic-cyan hover:text-mosaic-white-100'
+          }`}
         >
-          {copied ? '¡Copiado!' : 'Copiar Texto'}
+          {copied ? '¡Copiado!' : 'Copiar texto'}
         </button>
       </div>
-      <div className="bg-gray-100 dark:bg-gray-800/50 p-6 rounded-3xl border border-gray-200 dark:border-gray-700">
-        <p className="text-xs text-gray-600 dark:text-gray-300 font-medium leading-relaxed italic">
-          "{content}"
-        </p>
+      <div className="bg-mosaic-white-200 p-5 border border-mosaic-white-300">
+        <p className="mosaic-body text-xs italic">"{content}"</p>
       </div>
     </div>
   );

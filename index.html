@@ -3,27 +3,29 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="https://vitejs.dev/logo.svg" />
+    <link rel="icon" type="image/svg+xml" href="/img/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Redescomerciales.ai — Activa tu red de partners y conviértela en un canal de ventas escalable con metodología, tecnología e IA." />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Redescomerciales.ai - Transforma colaboradores en una red de ventas activa" />
+    <meta property="og:description" content="La plataforma impulsada por IA que identifica, motiva y cierra ventas a través de tus partners." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Redescomerciales.ai" />
+    <meta name="twitter:card" content="summary_large_image" />
     <title>Redescomerciales.ai - Transforma colaboradores en una red de ventas activa</title>
-    <!-- Google APIs -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script src="https://apis.google.com/js/api.js" async defer></script>
-  <script type="importmap">
-{
-  "imports": {
-    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.6",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.39.3"
-  }
-}
-</script>
-</head>
-  <body class="bg-brand-light text-brand-dark antialiased dark:bg-brand-dark-bg dark:text-gray-100">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script>
+      (function () {
+        var t = localStorage.getItem('gw_theme');
+        var dark = t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (dark) document.documentElement.classList.add('dark');
+        document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+      })();
+    </script>
+  </head>
+  <body class="bg-mosaic-white-200 text-mosaic-black-500 antialiased">
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>

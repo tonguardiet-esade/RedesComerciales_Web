@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import MosaicModal from './mosaic/MosaicModal';
 
 interface FaqModalProps {
   isOpen: boolean;
@@ -33,77 +34,56 @@ const FaqModal = ({ isOpen, onClose }: FaqModalProps) => {
     }
   ];
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-brand-dark/90 backdrop-blur-xl p-4 md:p-6 animate-fade-in">
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        className="bg-white dark:bg-brand-darkCard w-full max-w-3xl max-h-[90vh] rounded-[3rem] shadow-2xl border border-brand-primary/20 overflow-hidden flex flex-col"
-      >
-        {/* Header */}
-        <div className="p-8 md:p-10 border-b border-gray-100 dark:border-white/5 flex justify-between items-center bg-gray-50/50 dark:bg-gray-800/30 shrink-0">
-          <div>
-            <h3 className="text-2xl md:text-3xl font-black text-[#2a3b5a] dark:text-white uppercase tracking-tighter leading-none">Preguntas Frecuentes</h3>
-            <p className="text-[10px] font-bold text-gray-400 dark:text-gray-300 uppercase tracking-[0.2em] mt-2">Todo sobre el rol de Ejemplos de venta</p>
-          </div>
-          <button 
-            onClick={onClose}
-            className="w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 text-gray-400 hover:text-red-500 transition-all shadow-lg border border-gray-100 dark:border-white/5 font-bold text-xl"
-          >
-            ✕
-          </button>
-        </div>
-
-        {/* Content */}
-        <div className="flex-1 overflow-y-auto p-8 md:p-10 custom-scrollbar">
-          <div className="space-y-4">
-            {faqData.map((item, index) => (
-              <div 
-                key={index} 
-                className="bg-gray-50/50 dark:bg-brand-darkBg/50 rounded-[2rem] border border-gray-100 dark:border-white/5 overflow-hidden transition-all"
+    <MosaicModal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Preguntas frecuentes"
+      subtitle="Todo sobre el rol de Ejemplos de venta"
+      maxWidth="3xl"
+    >
+      <div className="p-6 md:p-8">
+        <div className="space-y-3">
+          {faqData.map((item, index) => (
+            <div key={index} className="border border-mosaic-white-300 bg-mosaic-white-200 overflow-hidden">
+              <button
+                type="button"
+                onClick={() => setActiveFaq(activeFaq === index ? null : index)}
+                className="w-full p-5 md:p-6 flex items-center justify-between text-left group"
               >
-                <button 
-                  onClick={() => setActiveFaq(activeFaq === index ? null : index)}
-                  className="w-full p-8 flex items-center justify-between text-left group"
-                >
-                  <span className="text-sm md:text-base font-black text-[#2a3b5a] dark:text-white uppercase tracking-tight group-hover:text-brand-primary transition-colors pr-4">
-                    {item.question}
-                  </span>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all ${activeFaq === index ? 'bg-brand-primary text-white' : 'bg-white dark:bg-gray-800 text-gray-400'}`}>
-                    {activeFaq === index ? '−' : '+'}
-                  </div>
-                </button>
-                
-                <AnimatePresence>
-                  {activeFaq === index && (
-                    <motion.div 
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    >
-                      <div className="px-8 pb-8">
-                        <div className="h-px bg-gray-200 dark:bg-gray-700 mb-6 w-12"></div>
-                        <p className="text-sm md:text-base text-gray-600 dark:text-gray-200 font-medium leading-relaxed">
-                          {item.answer}
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </div>
+                <span className="mosaic-body text-sm text-mosaic-black-500 group-hover:text-mosaic-cyan transition-colors pr-4">
+                  {item.question}
+                </span>
+                <span className={`w-8 h-8 flex items-center justify-center mosaic-label shrink-0 transition-colors ${
+                  activeFaq === index ? 'bg-mosaic-cyan text-mosaic-white-100' : 'bg-mosaic-white-100 text-mosaic-black-300 border border-mosaic-white-300'
+                }`}>
+                  {activeFaq === index ? '−' : '+'}
+                </span>
+              </button>
+
+              <AnimatePresence>
+                {activeFaq === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  >
+                    <div className="px-5 md:px-6 pb-5 md:pb-6 border-t border-mosaic-white-300">
+                      <p className="mosaic-body text-sm pt-4">{item.answer}</p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
         </div>
 
-        {/* Footer */}
-        <div className="p-8 border-t border-gray-100 dark:border-white/5 bg-gray-50/30 dark:bg-gray-800/20 text-center shrink-0">
-          <p className="text-[10px] font-bold text-gray-400 dark:text-gray-300 uppercase tracking-widest">¿Tienes más dudas? Contacta con nuestro soporte</p>
-        </div>
-      </motion.div>
-    </div>
+        <p className="mosaic-label text-mosaic-black-300 text-center mt-8">
+          ¿Tienes más dudas? Contacta con nuestro soporte
+        </p>
+      </div>
+    </MosaicModal>
   );
 };
 

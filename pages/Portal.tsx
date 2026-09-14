@@ -6,6 +6,7 @@ import { UserLevel } from '../types';
 import LibraryDrawer from '../components/LibraryDrawer';
 import ChatAssistant from '../components/ChatAssistant';
 import FaqModal from '../components/FaqModal';
+import { dashboardImage, simulatorImage } from '../assets/images';
 
 const Portal = () => {
   const { user, updateUser } = useUser();
@@ -174,23 +175,24 @@ const Portal = () => {
   Proceso de éxito: Referir lead -> Pre-filtro técnico -> Cierre -> Pago comisión.`;
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-12 transition-colors duration-300">
+    <div className="mosaic-container pt-28 md:pt-32 pb-16 max-w-5xl">
       
       {/* Header */}
-      <div className="mb-10 p-10 md:p-14 bg-white dark:bg-brand-darkCard rounded-[3rem] shadow-2xl border border-brand-primary/10 animate-fade-in flex flex-col md:flex-row gap-10">
+      <div className="mb-10 p-10 md:p-14 bg-mosaic-white-100 border border-mosaic-white-300 flex flex-col md:flex-row gap-10">
           <div className="flex-1">
-              <h2 className="text-4xl md:text-5xl font-black text-brand-dark dark:text-white uppercase tracking-tighter mb-10 leading-tight">
+              <p className="mosaic-label text-mosaic-cyan mb-4">Tu espacio</p>
+              <h2 className="mosaic-h2 mb-10">
                   {isEjemplosDeVenta ? (
-                    <span className="text-brand-primary uppercase tracking-tighter">Ejemplos de venta</span>
+                    <span className="text-mosaic-cyan uppercase tracking-tighter">Ejemplos de venta</span>
                   ) : (
                     <>
                       {isColaborador ? 'BIENVENIDO/A A ' : isDelegado ? 'Delegado ' : 'Bienvenido '}
-                      <span className="text-brand-primary uppercase">{isColaborador ? 'Plataforma' : isDelegado ? 'MOCOTA' : 'Ecosistema'}</span> 🚀
+                      <span className="text-mosaic-cyan uppercase">{isColaborador ? 'Plataforma' : isDelegado ? 'MOCOTA' : 'Ecosistema'}</span> 🚀
                     </>
                   )}
               </h2>
-              <div className="bg-gray-50 dark:bg-brand-darkBg p-8 md:p-10 rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm">
-                  <p className="text-gray-500 dark:text-gray-200 text-sm md:text-base leading-relaxed font-medium">
+              <div className="bg-mosaic-white-200 p-8 md:p-10 border border-mosaic-white-300">
+                  <p className="mosaic-body text-sm">
                       {isEjemplosDeVenta 
                         ? 'Como Ejemplos de venta, juegas un papel clave conectando empresas con oportunidades reales de financiación pública. Desde aquí podrás recomendar nuestra herramienta para identificar, evaluar y acceder a ayudas alineadas con cada proyecto. Gracias por formar parte del ecosistema que transforma ideas en proyectos financiables.'
                         : isColaborador 
@@ -207,8 +209,8 @@ const Portal = () => {
           </div>
 
           {isDemo && (
-              <div className="w-full md:w-80 bg-gray-50 dark:bg-brand-darkBg p-6 rounded-[2rem] border border-dashed border-brand-primary/30 flex flex-col gap-2.5 shrink-0">
-                  <img src="/img/2.png" alt="Simulador Admin" className="w-full h-auto rounded-xl mb-4 shadow-sm" referrerPolicy="no-referrer" />
+              <div className="w-full md:w-80 bg-mosaic-white-200 p-6 border border-dashed border-mosaic-cyan/30 flex flex-col gap-2.5 shrink-0">
+                  <img src={simulatorImage} alt="Simulador Admin" className="w-full h-auto mb-4" />
                   <p className="text-[9px] font-black text-gray-400 dark:text-gray-300 uppercase tracking-widest text-center mb-2">Acciones de Simulación</p>
                   
                   {/* BOTONES RRHH Y VENTAS: SOLO PARA COLABORADOR */}
@@ -224,7 +226,7 @@ const Portal = () => {
                   {isColaborador && <div className="h-px bg-gray-200 dark:bg-gray-700 my-1"></div>}
 
                   {!isEjemplosDeVenta && (
-                    <button onClick={simulateFullProgress} className="w-full py-2.5 bg-brand-secondary/10 text-brand-secondary border border-brand-secondary/20 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-brand-secondary hover:text-white transition-all">
+                    <button onClick={simulateFullProgress} className="w-full py-2.5 bg-mosaic-green/10 text-mosaic-green border border-brand-secondary/20 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-mosaic-green hover:text-white transition-all">
                         COMPLETAR FORMACIÓN
                     </button>
                   )}
@@ -257,19 +259,19 @@ const Portal = () => {
       {showColaboradorDashboard && (
           <div className="mt-12 space-y-12 animate-fade-in">
               {/* MÉTRICAS DE RENDIMIENTO (DASHBOARD) */}
-              <div className="bg-white dark:bg-brand-darkCard p-10 md:p-12 rounded-[4rem] shadow-2xl border-2 border-brand-primary/5">
+              <div className="bg-mosaic-white-100 border border-mosaic-white-300 p-10 md:p-12 rounded-[4rem] shadow-2xl border-2 border-mosaic-cyan/5">
                   <div className="mb-12 text-left">
                       <h3 className="text-4xl font-black text-[#2a3b5a] dark:text-white uppercase tracking-tighter leading-none">MI DASHBOARD COMERCIAL</h3>
                       <p className="text-[11px] font-bold text-gray-400 dark:text-gray-300 uppercase tracking-[0.2em] mt-2 ml-1">RENDIMIENTO DE MI CARTERA DE CLIENTES</p>
                   </div>
 
                   <div className="rounded-[3rem] overflow-hidden shadow-2xl border border-gray-100 dark:border-white/5 bg-white">
-                      <img src="/img/1.png" alt="Dashboard Comercial" className="w-full h-auto" referrerPolicy="no-referrer" />
+                      <img src={dashboardImage} alt="Dashboard Comercial" className="w-full h-auto" />
                   </div>
               </div>
 
               {/* REGISTRAR NUEVA OPORTUNIDAD */}
-              <div className="bg-white dark:bg-brand-darkCard p-10 md:p-14 rounded-[3.5rem] shadow-xl border border-gray-100 dark:border-white/5 relative">
+              <div className="bg-mosaic-white-100 border border-mosaic-white-300 p-10 md:p-14 rounded-[3.5rem] shadow-xl border border-gray-100 dark:border-white/5 relative">
                   <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#7B79F7] rounded-[1.5rem] flex items-center justify-center text-white text-3xl shadow-xl shadow-[#7B79F7]/30">＋</div>
                   <div className="text-center mb-12 mt-6">
                       <h3 className="text-3xl font-black text-[#2a3b5a] dark:text-white uppercase tracking-tighter">REGISTRAR NUEVA OPORTUNIDAD</h3>
@@ -277,21 +279,21 @@ const Portal = () => {
                   </div>
                   <form onSubmit={handleRegisterOpt} className="space-y-8 max-w-4xl mx-auto">
                       <div className="grid md:grid-cols-2 gap-8">
-                          <input type="text" required placeholder="Nombre del Contacto" className="w-full p-6 bg-gray-50/50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-3xl outline-none" value={optName} onChange={(e) => setOptName(e.target.value)} />
-                          <input type="text" required placeholder="Empresa" className="w-full p-6 bg-gray-50/50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-3xl outline-none" value={optCompany} onChange={(e) => setOptCompany(e.target.value)} />
+                          <input type="text" required placeholder="Nombre del Contacto" className="app-input" value={optName} onChange={(e) => setOptName(e.target.value)} />
+                          <input type="text" required placeholder="Empresa" className="app-input" value={optCompany} onChange={(e) => setOptCompany(e.target.value)} />
                       </div>
                       <div className="grid md:grid-cols-2 gap-8">
-                          <input type="email" required placeholder="Email Corporativo" className="w-full p-6 bg-gray-50/50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-3xl outline-none" value={optEmail} onChange={(e) => setOptEmail(e.target.value)} />
-                          <input type="text" required placeholder="Teléfono" className="w-full p-6 bg-gray-50/50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-3xl outline-none" value={optPhone} onChange={(e) => setOptPhone(e.target.value)} />
+                          <input type="email" required placeholder="Email Corporativo" className="app-input" value={optEmail} onChange={(e) => setOptEmail(e.target.value)} />
+                          <input type="text" required placeholder="Teléfono" className="app-input" value={optPhone} onChange={(e) => setOptPhone(e.target.value)} />
                       </div>
-                      <button type="submit" disabled={optRegistered} className="w-full py-7 bg-brand-primary text-white font-black rounded-3xl uppercase tracking-[0.3em] shadow-2xl hover:brightness-110 active:scale-95 transition-all text-sm">
+                      <button type="submit" disabled={optRegistered} className="w-full py-7 bg-mosaic-black-500 text-white font-black rounded-3xl uppercase tracking-[0.3em] shadow-2xl hover:brightness-110 active:scale-95 transition-all text-sm">
                           {optRegistered ? 'OPORTUNIDAD REGISTRADA ✓' : 'REGISTRAR OPORTUNIDAD'}
                       </button>
                   </form>
               </div>
 
               {/* HISTORIAL DE COMISIONES */}
-              <div className="bg-white dark:bg-brand-darkCard p-10 md:p-14 rounded-[3.5rem] shadow-xl border border-gray-100 dark:border-white/5 relative">
+              <div className="bg-mosaic-white-100 border border-mosaic-white-300 p-10 md:p-14 rounded-[3.5rem] shadow-xl border border-gray-100 dark:border-white/5 relative">
                   <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#2a3b5a] rounded-[1.5rem] flex items-center justify-center text-white text-3xl shadow-xl">💰</div>
                   <div className="text-center mb-12 mt-6">
                       <h3 className="text-3xl font-black text-[#2a3b5a] dark:text-white uppercase tracking-tighter">HISTORIAL DE COMISIONES</h3>
@@ -323,17 +325,17 @@ const Portal = () => {
       {/* Secciones de Candidatura (Solo flujo inicial) */}
       {(isColaborador || isDelegado) && needsApplication && (
         <div className="mb-12 animate-fade-in px-2">
-           <div className="border-2 border-brand-primary/40 rounded-[3rem] p-1 shadow-2xl bg-white/50 dark:bg-brand-darkCard/50">
-             <div className="p-10 md:p-14 bg-white dark:bg-brand-darkCard rounded-[2.8rem]">
-                <h1 className="text-4xl font-bold text-brand-dark dark:text-white mb-2 tracking-tight">Tu Candidatura</h1>
+           <div className="border-2 border-mosaic-cyan/40 rounded-[3rem] p-1 shadow-2xl bg-white/50 dark:bg-brand-darkCard/50">
+             <div className="p-10 md:p-14 bg-mosaic-white-100 border border-mosaic-white-300 rounded-[2.8rem]">
+                <h1 className="text-4xl font-bold text-mosaic-black-500 mb-2 tracking-tight">Tu Candidatura</h1>
                 <p className="text-gray-500 dark:text-gray-400 mb-12 font-medium">Completa los datos para iniciar el proceso de validación comercial.</p>
                 <form onSubmit={handleApply} className="space-y-8">
                   <div className="grid md:grid-cols-2 gap-8">
-                    <input type="url" required placeholder="Enlace a CV (Drive/Dropbox)" className="w-full p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl outline-none" value={cvLink} onChange={(e) => setCvLink(e.target.value)} />
-                    <input type="url" required placeholder="Perfil de LinkedIn" className="w-full p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl outline-none" value={linkedin} onChange={(e) => setLinkedin(e.target.value)} />
+                    <input type="url" required placeholder="Enlace a CV (Drive/Dropbox)" className="app-input" value={cvLink} onChange={(e) => setCvLink(e.target.value)} />
+                    <input type="url" required placeholder="Perfil de LinkedIn" className="app-input" value={linkedin} onChange={(e) => setLinkedin(e.target.value)} />
                   </div>
-                  <textarea required rows={4} placeholder="Carta de motivación / Experiencia relevante..." className="w-full p-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl outline-none" value={coverLetter} onChange={(e) => setCoverLetter(e.target.value)} />
-                  <button type="submit" disabled={submitting} className="w-full py-6 bg-brand-primary text-white font-black rounded-3xl uppercase tracking-widest shadow-xl disabled:opacity-50">
+                  <textarea required rows={4} placeholder="Carta de motivación / Experiencia relevante..." className="app-input resize-none" value={coverLetter} onChange={(e) => setCoverLetter(e.target.value)} />
+                  <button type="submit" disabled={submitting} className="w-full py-6 bg-mosaic-black-500 text-white font-black rounded-3xl uppercase tracking-widest shadow-xl disabled:opacity-50">
                     {submitting ? 'Enviando...' : 'Enviar Datos de Validación'}
                   </button>
                 </form>
@@ -345,21 +347,21 @@ const Portal = () => {
       {/* ITINERARIO FORMATIVO (Aparece junto al dashboard si está desbloqueado pero aún no se ha completado la firma final) */}
       {showModulesBlock && (
         <div className="mt-12 space-y-8 animate-fade-in">
-            <div className="bg-white dark:bg-brand-darkCard p-10 rounded-[3rem] shadow-2xl border border-gray-100 dark:border-white/5">
-                <h3 className="text-2xl font-black dark:text-white uppercase tracking-tighter mb-8">ITINERARIO DE ESPECIALIZACIÓN</h3>
+            <div className="bg-mosaic-white-100 border border-mosaic-white-300 p-10 rounded-[3rem] shadow-2xl border border-gray-100 dark:border-white/5">
+                <h3 className="mosaic-h4 mb-8">Itinerario de especialización</h3>
                 <div className="space-y-4">
                     {modulesData.map((m) => (
-                        <div key={m.id} className={`flex items-center justify-between p-6 bg-white dark:bg-brand-darkCard rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm transition-all ${m.locked ? 'opacity-30 grayscale pointer-events-none' : 'hover:border-brand-primary/30'}`}>
+                        <div key={m.id} className={`flex items-center justify-between p-6 bg-mosaic-white-100 border border-mosaic-white-300 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm transition-all ${m.locked ? 'opacity-30 grayscale pointer-events-none' : 'hover:border-mosaic-cyan/30'}`}>
                         <div className="flex items-center gap-6">
-                            <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-white shadow-lg ${m.completed ? 'bg-brand-secondary' : 'bg-brand-primary'}`}>
+                            <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-white shadow-lg ${m.completed ? 'bg-mosaic-green' : 'bg-mosaic-black-500'}`}>
                                 {m.completed ? '✓' : (m.id === 6 ? 'T' : m.id)}
                             </div>
                             <div>
-                                <h3 className="text-lg font-bold text-brand-dark dark:text-white leading-none">{m.title}</h3>
-                                <p className={`text-[10px] font-black uppercase mt-1.5 tracking-[0.2em] ${m.completed ? 'text-brand-secondary' : 'text-gray-400'}`}>{m.completed ? 'COMPLETADO' : m.locked ? 'BLOQUEADO' : 'PENDIENTE'}</p>
+                                <h3 className="text-lg font-bold text-mosaic-black-500 leading-none">{m.title}</h3>
+                                <p className={`text-[10px] font-black uppercase mt-1.5 tracking-[0.2em] ${m.completed ? 'text-mosaic-green' : 'text-gray-400'}`}>{m.completed ? 'COMPLETADO' : m.locked ? 'BLOQUEADO' : 'PENDIENTE'}</p>
                             </div>
                         </div>
-                        <Link to={m.path} className={`px-10 py-3.5 rounded-xl font-black text-[11px] uppercase tracking-widest transition-all ${m.completed ? 'bg-brand-secondary/10 text-brand-secondary hover:bg-brand-secondary hover:text-white' : 'bg-brand-primary text-white hover:brightness-110 shadow-lg'}`}>
+                        <Link to={m.path} className={`px-10 py-3.5 rounded-xl font-black text-[11px] uppercase tracking-widest transition-all ${m.completed ? 'bg-mosaic-green/10 text-mosaic-green hover:bg-mosaic-green hover:text-white' : 'bg-mosaic-black-500 text-white hover:brightness-110 shadow-lg'}`}>
                             {m.completed ? 'Repasar' : 'Comenzar'}
                         </Link>
                         </div>
@@ -372,7 +374,7 @@ const Portal = () => {
       {/* SECCIÓN DE PASOS FINALES (Discovery, Demo, Simulacro) */}
       {isColaborador && isTrainingCompleted && !user.contract_signed && (
         <div className="mt-12 space-y-8 animate-fade-in">
-           <div className="bg-white dark:bg-brand-darkCard p-10 rounded-[3rem] shadow-2xl border-2 border-brand-secondary/30">
+           <div className="bg-mosaic-white-100 border border-mosaic-white-300 p-10 rounded-[3rem] shadow-2xl border-2 border-brand-secondary/30">
               <h3 className="text-2xl font-black dark:text-white uppercase tracking-tighter mb-8 text-center">Pasos Finales antes de la Firma</h3>
               
               <div className="grid md:grid-cols-3 gap-6">
@@ -392,7 +394,7 @@ const Portal = () => {
 
                  {/* Simulacro Ventas */}
                  <button onClick={() => setIsCalendarModalOpen(true)} className="flex flex-col items-center p-8 bg-gray-50 dark:bg-brand-darkBg rounded-[2rem] border border-gray-100 dark:border-white/5 hover:scale-[1.02] transition-all group">
-                    <div className="w-16 h-16 bg-brand-primary/10 text-brand-primary rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform">📅</div>
+                    <div className="w-16 h-16 bg-mosaic-black-500/10 text-mosaic-cyan rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform">📅</div>
                     <h4 className="text-lg font-black dark:text-white uppercase tracking-tight mb-2">Agendar Simulacro</h4>
                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{appointmentBooked ? 'Cita Agendada ✓' : 'Cita con un experto'}</p>
                  </button>
@@ -403,12 +405,12 @@ const Portal = () => {
 
       {/* Banner de Firma Digital (Si no le falta firmar) */}
       {!isEjemplosDeVenta && !user.contract_signed && (user.application_status === 'approved' || user.validation_status === 'passed') && (
-        <div className="mt-12 bg-white dark:bg-brand-darkCard p-10 rounded-[2.5rem] shadow-card border-2 border-brand-primary animate-fade-in mb-10 text-center">
+        <div className="mt-12 bg-mosaic-white-100 border border-mosaic-white-300 p-10 rounded-[2.5rem] shadow-card border-2 border-mosaic-cyan animate-fade-in mb-10 text-center">
             <div className="flex items-center justify-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-brand-primary/10 rounded-full flex items-center justify-center text-brand-primary text-2xl">✒️</div>
-                <h2 className="text-3xl font-black text-brand-dark dark:text-white uppercase tracking-tighter">Firma tu Convenio</h2>
+                <div className="w-12 h-12 bg-mosaic-black-500/10 rounded-full flex items-center justify-center text-mosaic-cyan text-2xl">✒️</div>
+                <h2 className="text-3xl font-black text-mosaic-black-500 uppercase tracking-tighter">Firma tu Convenio</h2>
             </div>
-            <Link to="/contrato" className="block w-full max-w-md mx-auto py-6 bg-brand-primary text-white font-black rounded-2xl shadow-xl uppercase tracking-widest text-sm hover:scale-[1.02] transition-all">
+            <Link to="/contrato" className="block w-full max-w-md mx-auto py-6 bg-mosaic-black-500 text-white font-black rounded-2xl shadow-xl uppercase tracking-widest text-sm hover:scale-[1.02] transition-all">
                 Acceder a la Firma Digital
             </Link>
         </div>
@@ -429,40 +431,46 @@ const Portal = () => {
 
       {/* MODAL CALENDARIO SIMULACRO */}
       {isCalendarModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-brand-dark/90 backdrop-blur-xl p-6">
-            <div className="bg-white dark:bg-brand-darkCard w-full max-w-lg rounded-[3rem] p-10 shadow-2xl border border-brand-primary/20 animate-bounce-in">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-mosaic-black-500/80 backdrop-blur-sm p-4 md:p-6">
+            <div className="bg-mosaic-white-100 border border-mosaic-white-300 w-full max-w-lg p-8 md:p-10">
                 <div className="flex justify-between items-center mb-8">
-                    <h3 className="text-2xl font-black dark:text-white uppercase tracking-tighter">Agendar Simulacro de Ventas</h3>
-                    <button onClick={() => setIsCalendarModalOpen(false)} className="text-gray-400 hover:text-red-500 font-bold">✕</button>
+                    <h3 className="mosaic-h4">Agendar simulacro de ventas</h3>
+                    <button type="button" onClick={() => setIsCalendarModalOpen(false)} className="text-mosaic-black-300 hover:text-mosaic-cyan">✕</button>
                 </div>
 
                 {!appointmentBooked ? (
                     <div className="space-y-6">
                         <div>
-                            <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Selecciona un día</label>
-                            <input 
-                                type="date" 
-                                className="w-full p-4 rounded-2xl border-2 dark:bg-gray-800 dark:border-gray-700 dark:text-white font-bold text-sm outline-none focus:border-brand-primary transition-all"
+                            <label className="mosaic-label text-mosaic-black-300 block mb-2">Selecciona un día</label>
+                            <input
+                                type="date"
+                                className="app-input"
                                 value={selectedDate}
                                 onChange={(e) => setSelectedDate(e.target.value)}
                                 min={new Date().toISOString().split('T')[0]}
                             />
                         </div>
                         <div>
-                            <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Selecciona una hora</label>
+                            <label className="mosaic-label text-mosaic-black-300 block mb-2">Selecciona una hora</label>
                             <div className="grid grid-cols-3 gap-2">
                                 {['10:00', '11:00', '12:00', '16:00', '17:00', '18:00'].map(time => (
-                                    <button 
+                                    <button
                                         key={time}
+                                        type="button"
                                         onClick={() => setSelectedTime(time)}
-                                        className={`py-3 rounded-xl font-bold text-xs transition-all border-2 ${selectedTime === time ? 'bg-brand-primary border-brand-primary text-white shadow-lg' : 'bg-gray-50 dark:bg-gray-800 border-transparent dark:text-gray-300 hover:border-brand-primary/30'}`}
+                                        className={`py-3 mosaic-label text-xs border transition-colors ${
+                                          selectedTime === time
+                                            ? 'bg-mosaic-black-500 border-mosaic-black-500 text-mosaic-white-100'
+                                            : 'bg-mosaic-white-200 border-mosaic-white-300 hover:border-mosaic-cyan'
+                                        }`}
                                     >
                                         {time}
                                     </button>
                                 ))}
                             </div>
                         </div>
-                        <button 
+                        <button
+                            type="button"
                             onClick={() => {
                                 if (selectedDate && selectedTime) {
                                     setAppointmentBooked(true);
@@ -471,16 +479,16 @@ const Portal = () => {
                                     alert("Por favor selecciona día y hora.");
                                 }
                             }}
-                            className="w-full py-5 bg-brand-primary text-white font-black rounded-2xl uppercase text-[11px] tracking-widest shadow-xl shadow-brand-primary/30 hover:scale-[1.02] active:scale-95 transition-all mt-4"
+                            className="w-full py-4 bg-mosaic-black-500 text-mosaic-white-100 mosaic-label hover:bg-mosaic-cyan transition-colors mt-4"
                         >
-                            Confirmar Cita con Experto
+                            Confirmar cita con experto
                         </button>
                     </div>
                 ) : (
-                    <div className="py-10 text-center space-y-4">
+                    <div className="py-8 text-center space-y-4">
                         <div className="text-5xl">🎉</div>
-                        <h4 className="text-xl font-black dark:text-white uppercase tracking-tight">¡Cita Confirmada!</h4>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">Recibirás un correo con el enlace de Google Meet para el día {selectedDate} a las {selectedTime}.</p>
+                        <h4 className="mosaic-h4">¡Cita confirmada!</h4>
+                        <p className="mosaic-body text-sm">Recibirás un correo con el enlace de Google Meet para el día {selectedDate} a las {selectedTime}.</p>
                     </div>
                 )}
             </div>

@@ -1,612 +1,375 @@
-import React, { useState, useEffect } from 'react';
-import logo from '../img/logo.svg';
-import { useSettings } from '../context/SettingsContext';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'motion/react';
-import { 
-  CheckCircle2, 
-  ArrowRight, 
-  Users, 
-  TrendingUp, 
-  BarChart3, 
-  Zap, 
-  Target, 
-  ShieldCheck, 
-  MessageSquare, 
-  ChevronDown,
-  X,
-  Play,
-  Ghost,
-  EyeOff
-} from 'lucide-react';
-
-const PipelineMockup = () => {
-  return (
-    <div className="bg-[#0F172A] p-8 space-y-6 flex flex-col h-full overflow-hidden">
-      {/* Header */}
-      <div className="flex items-center gap-4">
-        <div className="w-12 h-12 bg-red-500/10 rounded-2xl flex items-center justify-center text-red-400">
-          <TrendingUp className="w-6 h-6" />
-        </div>
-        <div>
-          <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Pipeline Activo</p>
-          <div className="flex items-center gap-3">
-            <span className="text-3xl font-black text-white tracking-tighter">+124%</span>
-            <svg className="w-12 h-6 text-green-400" viewBox="0 0 50 20">
-              <path 
-                d="M2 15 C 10 15, 15 2, 25 10 C 35 18, 40 5, 48 5" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="3" 
-                strokeLinecap="round" 
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      {/* Cards */}
-      <div className="space-y-4">
-        {[
-          { icon: 'Te', name: 'TechCorp S.A.', val: '45.000€', tag: 'CIERRE', color: 'green', progress: 85 },
-          { icon: 'Lo', name: 'Logistics Pro', val: '12.500€', tag: 'VALIDACIÓN', color: 'blue', progress: 40 },
-          { icon: 'Gl', name: 'Global Retail', val: '89.000€', tag: 'PROPUESTA', color: 'red', progress: 20 },
-        ].map((item, i) => (
-          <div key={i} className="bg-white/10 p-5 rounded-[2rem] border border-white/10 flex items-center justify-between group hover:bg-white/15 transition-all duration-300">
-            <div className="flex items-center gap-4">
-              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-sm uppercase shadow-lg ${
-                item.color === 'green' ? 'bg-green-400 text-brand-dark' : 
-                item.color === 'blue' ? 'bg-blue-400 text-brand-dark' : 'bg-red-400 text-brand-dark'
-              }`}>
-                {item.icon}
-              </div>
-              <div>
-                <h4 className="text-[15px] font-black text-white leading-tight tracking-tight">{item.name}</h4>
-                <div className="flex items-center gap-2 mt-1.5">
-                  <span className="text-[11px] font-bold text-gray-300">{item.val}</span>
-                  <div className="w-20 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                    <div 
-                      className={`h-full ${
-                        item.color === 'green' ? 'bg-green-400' : 
-                        item.color === 'blue' ? 'bg-blue-400' : 'bg-red-400'
-                      }`} 
-                      style={{ width: `${item.progress}%` }} 
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <span className={`text-[9px] font-black px-4 py-2 rounded-full ${
-              item.color === 'green' ? 'bg-green-500/20 text-green-400' : 
-              item.color === 'blue' ? 'bg-blue-500/20 text-blue-400' : 
-              'bg-red-500/20 text-red-400'
-            } uppercase tracking-widest`}>
-              {item.tag}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      {/* Footer Stats */}
-      <div className="flex justify-around items-center mt-auto pt-8 border-t border-white/5">
-        <div className="text-center">
-          <p className="text-3xl font-black text-red-400">85%</p>
-          <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Activación</p>
-        </div>
-        <div className="text-center">
-          <p className="text-3xl font-black text-blue-400">24h</p>
-          <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Respuesta</p>
-        </div>
-      </div>
-    </div>
-  );
-};
+import gsap from 'gsap';
+import { useSettings } from '../context/SettingsContext';
+import ScrollIndicator from '../components/mosaic/ScrollIndicator';
+import AnimatedLink from '../components/mosaic/AnimatedLink';
+import ContactBanner from '../components/mosaic/ContactBanner';
+import HeroPipelineCard from '../components/mosaic/HeroPipelineCard';
+import NetworkComparison from '../components/mosaic/NetworkComparison';
+import SolutionSection from '../components/mosaic/SolutionSection';
+import TrustBar from '../components/mosaic/TrustBar';
+import SectionParallax from '../components/mosaic/SectionParallax';
+import FaqAccordion from '../components/mosaic/FaqAccordion';
+import { useLandingScrollEffects } from '../hooks/useLandingScrollEffects';
+import { useFaqItems } from '../hooks/useFaqItems';
+import { ANALYTICS_EVENTS, trackEvent } from '../lib/analytics';
 
 const Landing = () => {
-  const { t, theme } = useSettings();
+  const { t } = useSettings();
   const navigate = useNavigate();
-  const [showStickyCTA, setShowStickyCTA] = useState(false);
-  const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  const [activeSteps, setActiveSteps] = useState<number[]>([]);
-  const [activeBenefit, setActiveBenefit] = useState<number | null>(null);
+  const pageRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
+  useLandingScrollEffects(pageRef);
+
+  const faqItems = useFaqItems();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setShowStickyCTA(window.scrollY > 600);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    const ctx = gsap.context(() => {
+      const words = hero.querySelectorAll('.hero-word');
+      const footnote = hero.querySelector('.hero-footnote');
+      const subtitle = hero.querySelector('.hero-subtitle');
+      const meta = hero.querySelector('.hero-meta');
+      const pipeline = hero.querySelectorAll('.hero-pipeline');
+
+      const tl = gsap.timeline({ delay: 0.6 });
+      if (footnote) {
+        tl.fromTo(
+          footnote,
+          { y: 16, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' }
+        );
+      }
+      if (words.length) {
+        tl.fromTo(
+          words,
+          { yPercent: 110, opacity: 0 },
+          {
+            yPercent: 0,
+            opacity: 1,
+            duration: 0.9,
+            stagger: 0.06,
+            ease: 'power3.out',
+            clearProps: 'transform',
+          },
+          footnote ? '-=0.2' : 0
+        );
+      }
+      if (subtitle) tl.fromTo(subtitle, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, '-=0.4');
+      if (meta) tl.fromTo(meta, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' }, '-=0.5');
+      if (pipeline.length) {
+        tl.fromTo(
+          pipeline,
+          { y: 40, opacity: 0, scale: 0.94 },
+          { y: 0, opacity: 1, scale: 1, duration: 1, ease: 'power3.out' },
+          '-=0.6'
+        );
+      }
+    }, hero);
+
+    return () => ctx.revert();
   }, []);
 
-  const scrollToCTA = () => {
-    document.getElementById('final-cta')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const toggleStep = (step: number) => {
-    setActiveSteps(prev => 
-      prev.includes(step) ? prev.filter(s => s !== step) : [...prev, step]
-    );
-  };
+  const methodSteps = [1, 2, 3, 4].map((i) => ({
+    num: `0${i}`,
+    title: t(`methodology.step${i}.title`),
+    desc: t(`methodology.step${i}.desc`),
+  }));
+
+  const benefits = [1, 2, 3, 4, 5].map((i) => ({
+    title: t(`benefits.item${i}.title`),
+    desc: t(`benefits.item${i}.desc`),
+  }));
+
+  const cases = [
+    { val: t('cases.metric1.val'), label: t('cases.metric1.label') },
+    { val: t('cases.metric2.val'), label: t('cases.metric2.label') },
+    { val: t('cases.metric3.val'), label: t('cases.metric3.label') },
+  ];
+
+  const heroWords = t('hero.titleWords').split(' ');
 
   return (
-    <div className="transition-colors duration-300 bg-transparent overflow-x-hidden">
-      {/* Sticky CTA */}
-      <AnimatePresence>
-        {showStickyCTA && (
-          <motion.div 
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            exit={{ y: -100 }}
-            className="fixed top-20 left-0 w-full z-50 bg-white/80 dark:bg-brand-dark-bg/80 backdrop-blur-md border-b border-gray-100 dark:border-white/5 py-3 px-4 shadow-lg hidden md:block"
-          >
-            <div className="max-w-7xl mx-auto flex justify-between items-center">
-              <div className="flex items-center gap-3">
-                <img src={logo} alt="Logo" className="w-6 h-6" />
-                <div className="flex items-center gap-2">
-                  <span className="text-brand-primary font-black text-sm">Redes</span>
-                  <span className="text-brand-secondary font-black text-sm">comerciales.ai</span>
+    <div ref={pageRef} className="relative overflow-x-hidden">
+      <div className="relative z-10">
+        {/* HERO */}
+        <section
+          ref={heroRef}
+          data-scroll-scene="hero"
+          data-scroll-zone="hero"
+          className="relative min-h-[100svh] flex flex-col"
+        >
+          <div className="mosaic-container relative flex-1 pt-28 md:pt-32 pb-28 md:pb-32 flex flex-col justify-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-6 items-center">
+              <div className="lg:col-span-7 xl:col-span-6">
+                <div className="hero-footnote mb-8 max-w-sm">
+                  <p className="hero-footnote-label mosaic-label text-mosaic-cyan mb-3">
+                    {t('hero.footnote.label')}
+                  </p>
+                  <p className="hero-footnote-def">
+                    {t('hero.footnote.def')}
+                  </p>
+                </div>
+                <h1 className="mosaic-h1-hero mb-10">
+                  {heroWords.map((word, i) => (
+                    <span key={i} className="hero-word-wrap">
+                      <span className="hero-word">
+                        {word.endsWith('*') ? (
+                          <>
+                            {word.slice(0, -1)}
+                            <span className="text-mosaic-cyan">*</span>
+                          </>
+                        ) : (
+                          word
+                        )}
+                      </span>
+                    </span>
+                  ))}
+                </h1>
+                <p className="hero-subtitle mosaic-body-lg max-w-xl mb-10 text-mosaic-black-300">
+                  {t('hero.subtitle')}
+                </p>
+                <div className="hero-meta flex flex-col sm:flex-row gap-5 sm:items-center">
+                  <AnimatedLink
+                    to="/contacto"
+                    accent
+                    onClick={() => trackEvent(ANALYTICS_EVENTS.ctaClick, { location: 'hero_primary' })}
+                  >
+                    {t('hero.cta.primary')}
+                  </AnimatedLink>
+                  <AnimatedLink to="/soluciones">
+                    {t('hero.cta.secondary')}
+                  </AnimatedLink>
+                </div>
+
+                <div className="hero-pipeline mt-12 lg:hidden max-w-sm">
+                  <HeroPipelineCard />
                 </div>
               </div>
-              <button 
-                onClick={scrollToCTA}
-                className="bg-brand-primary text-white px-6 py-2 rounded-lg font-bold text-sm hover:scale-105 transition-all shadow-md"
-              >
-                {t('hero.cta.primary')}
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
-      {/* 1. Hero Section */}
-      <section className="relative pt-32 pb-40 px-4 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-20 dark:opacity-10">
-          <svg viewBox="0 0 1000 1000" className="w-full h-full">
-            <defs>
-              <radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                <stop offset="0%" stopColor="var(--color-brand-primary)" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="transparent" />
-              </radialGradient>
-            </defs>
-            <circle cx="500" cy="500" r="400" fill="url(#grad1)" />
-          </svg>
-        </div>
-
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="inline-block py-1 px-4 rounded-full bg-brand-primary/10 text-brand-primary font-bold text-xs mb-6 uppercase tracking-[0.2em]">
-              {t('hero.tag')}
-            </span>
-            <h1 className={`text-5xl md:text-7xl font-black leading-[1.1] mb-8 tracking-tighter ${theme === 'dark' ? 'text-white' : 'text-brand-dark'}`}>
-              {t('hero.title')}
-            </h1>
-            <p className={`text-xl mb-10 max-w-xl leading-relaxed ${theme === 'dark' ? 'text-gray-300' : 'text-gray-500'}`}>
-              {t('hero.subtitle')}
-            </p>
-            
-            <div className="space-y-4 mb-10">
-              {[1, 2, 3].map(i => (
-                <div key={i} className="flex items-center gap-3">
-                  <CheckCircle2 className="text-brand-primary w-5 h-5 shrink-0" />
-                  <span className={`font-bold ${theme === 'dark' ? 'text-gray-200' : 'text-brand-dark'}`}>{t(`hero.bullet${i}`)}</span>
+              <div className="hero-pipeline lg:col-span-5 xl:col-span-6 hidden lg:flex justify-end items-center lg:-translate-y-8 xl:-translate-y-10">
+                <div className="w-full max-w-[380px]">
+                  <HeroPipelineCard />
                 </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <button 
-                onClick={scrollToCTA}
-                className="px-10 py-5 bg-brand-primary text-white rounded-2xl font-black text-lg hover:scale-105 transition-all shadow-2xl shadow-brand-primary/30 flex items-center justify-center gap-2"
-              >
-                {t('hero.cta.primary')}
-                <ArrowRight className="w-5 h-5" />
-              </button>
-              <button 
-                onClick={() => navigate('/login')}
-                className="px-10 py-5 bg-white dark:bg-brand-dark-card text-brand-dark dark:text-white border border-gray-200 dark:border-white/10 rounded-2xl font-black text-lg hover:bg-gray-50 dark:hover:bg-white/5 transition-all flex items-center justify-center gap-2"
-              >
-                {t('nav.login')}
-                <Play className="w-4 h-4 fill-current rotate-90" />
-              </button>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="relative z-10 bg-[#0F172A] p-4 rounded-[3rem] shadow-2xl border border-white/10 shadow-black/40">
-              <div className="bg-[#0F172A] rounded-[2rem] overflow-hidden aspect-[4/5] flex flex-col justify-between relative h-[500px]">
-                <PipelineMockup />
               </div>
             </div>
-            {/* Decorative elements */}
-            <div className="absolute -top-10 -right-10 w-32 h-32 bg-brand-secondary/20 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-primary/20 rounded-full blur-3xl"></div>
-          </motion.div>
-        </div>
-      </section>
 
-      {/* 2. Problema Section */}
-      <section className="py-32 bg-white/20 dark:bg-brand-darkBg/10 backdrop-blur-[1px]">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="max-w-3xl mb-20">
-            <h2 className="text-4xl md:text-5xl font-black text-brand-dark dark:text-white mb-8 leading-tight">
-              {t('problem.headline')}
+            <div className="absolute bottom-3 md:bottom-5 inset-x-0 flex justify-between items-end pointer-events-none">
+              <div className="pointer-events-auto">
+                <ScrollIndicator onClick={() => scrollTo('manifesto')} />
+              </div>
+              <span className="mosaic-label text-mosaic-black-300 hidden md:block pointer-events-auto">{t('hero.tag')}</span>
+            </div>
+          </div>
+        </section>
+
+        <TrustBar />
+
+        {/* QUÉ ES — GEO / AEO */}
+        <section
+          className="mosaic-editorial-section py-var-spacer-lg border-b border-mosaic-white-300"
+          style={{ paddingTop: 'var(--spacer-lg)', paddingBottom: 'var(--spacer-lg)' }}
+          aria-labelledby="what-is-heading"
+        >
+          <div className="mosaic-container max-w-4xl">
+            <h2 id="what-is-heading" className="mosaic-h2-editorial mb-6">
+              {t('whatIs.title')}
             </h2>
-            <p className="text-xl text-gray-500 dark:text-white leading-relaxed mb-8">
-              {t('problem.copy')}
-            </p>
-            <p className="text-2xl font-black text-brand-primary">
-              {t('problem.remate')}
+            <p className="mosaic-body-lg text-mosaic-black-300 leading-relaxed">
+              {t('whatIs.text')}
             </p>
           </div>
+        </section>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="bg-gray-50 dark:bg-brand-dark-card p-12 rounded-[3rem] border border-gray-100 dark:border-white/5">
-              <div className="mb-10 flex items-center gap-4">
-                <div className="w-10 h-10 bg-red-500/10 rounded-full flex items-center justify-center text-red-500">
-                  <X className="w-6 h-6" />
-                </div>
-                <h3 className="text-2xl font-bold text-brand-dark dark:text-white">{t('problem.passive.title')}</h3>
-              </div>
-              <div className="space-y-6 opacity-50 grayscale">
-                <div className="flex gap-4 items-start bg-white dark:bg-brand-darkBg p-4 rounded-2xl border border-gray-100 dark:border-white/5">
-                  <div className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-xl shrink-0 flex items-center justify-center">
-                    <Ghost className="w-6 h-6 text-gray-400" />
-                  </div>
-                  <div className="space-y-1">
-                    <h4 className="font-bold text-gray-600 dark:text-white">{t('problem.passive.item1.title')}</h4>
-                    <p className="text-sm text-gray-500 dark:text-gray-200 leading-tight">{t('problem.passive.item1.desc')}</p>
-                  </div>
-                </div>
-                
-                <div className="flex gap-4 items-start bg-white dark:bg-brand-darkBg p-4 rounded-2xl border border-gray-100 dark:border-white/5">
-                  <div className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-xl shrink-0 flex items-center justify-center">
-                    <EyeOff className="w-6 h-6 text-gray-400" />
-                  </div>
-                  <div className="space-y-1">
-                    <h4 className="font-bold text-gray-600 dark:text-white">{t('problem.passive.item2.title')}</h4>
-                    <p className="text-sm text-gray-500 dark:text-gray-200 leading-tight">{t('problem.passive.item2.desc')}</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4 items-start bg-white dark:bg-brand-darkBg p-4 rounded-2xl border border-gray-100 dark:border-white/5">
-                  <div className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-xl shrink-0 flex items-center justify-center">
-                    <Target className="w-6 h-6 text-gray-400" />
-                  </div>
-                  <div className="space-y-1">
-                    <h4 className="font-bold text-gray-600 dark:text-white">{t('problem.passive.item3.title')}</h4>
-                    <p className="text-sm text-gray-500 dark:text-gray-200 leading-tight">{t('problem.passive.item3.desc')}</p>
-                  </div>
-                </div>
-              </div>
+        {/* PROBLEMA / COMPARACIÓN */}
+        <SectionParallax
+          id="manifesto"
+          data-scroll-scene="manifesto"
+          data-scroll-zone="manifesto"
+          className="mosaic-editorial-section section-glass-light py-var-spacer-xxl"
+          style={{ paddingTop: 'var(--spacer-xxl)', paddingBottom: 'var(--spacer-xxl)' }}
+        >
+          <div className="mosaic-container">
+            <div className="max-w-3xl mb-16 md:mb-20">
+              <div className="scroll-reveal-line w-20 h-px bg-mosaic-cyan mb-10" />
+              <h2 className="scroll-reveal-heading mosaic-h2-editorial mb-8 leading-tight">
+                {t('problem.headline')}
+              </h2>
+              <p className="scroll-reveal-body mosaic-body-lg text-mosaic-black-300 mb-6 leading-relaxed">
+                {t('problem.copy')}
+              </p>
+              <p className="scroll-reveal-body text-xl md:text-2xl font-black text-mosaic-cyan">
+                {t('problem.remate')}
+              </p>
             </div>
 
-            <div className="bg-brand-primary/5 p-12 rounded-[3rem] border border-brand-primary/20 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-primary/10 blur-3xl"></div>
-              <div className="mb-10 flex items-center gap-4 relative z-10">
-                <div className="w-10 h-10 bg-brand-primary/10 rounded-full flex items-center justify-center text-brand-primary">
-                  <Zap className="w-6 h-6" />
-                </div>
-                <h3 className="text-2xl font-bold text-brand-dark dark:text-white">{t('problem.active.title')}</h3>
-              </div>
-              <div className="space-y-6 relative z-10">
-                <motion.div 
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 }}
-                  className="flex gap-4 items-start bg-white dark:bg-brand-darkCard p-4 rounded-2xl shadow-xl shadow-brand-primary/5 border border-brand-primary/10"
-                >
-                  <div className="w-12 h-12 bg-brand-primary/10 rounded-xl shrink-0 flex items-center justify-center">
-                    <Zap className="w-6 h-6 text-brand-primary" />
-                  </div>
-                  <div className="space-y-1">
-                    <h4 className="font-bold text-brand-dark dark:text-white">{t('problem.active.item1.title')}</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-200 leading-tight">{t('problem.active.item1.desc')}</p>
-                  </div>
-                </motion.div>
+            <NetworkComparison />
+          </div>
+        </SectionParallax>
 
-                <motion.div 
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="flex gap-4 items-start bg-white dark:bg-brand-darkCard p-4 rounded-2xl shadow-xl shadow-brand-primary/5 border border-brand-primary/10"
-                >
-                  <div className="w-12 h-12 bg-brand-primary/10 rounded-xl shrink-0 flex items-center justify-center">
-                    <BarChart3 className="w-6 h-6 text-brand-primary" />
-                  </div>
-                  <div className="space-y-1">
-                    <h4 className="font-bold text-brand-dark dark:text-white">{t('problem.active.item2.title')}</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-200 leading-tight">{t('problem.active.item2.desc')}</p>
-                  </div>
-                </motion.div>
-
-                <motion.div 
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="flex gap-4 items-start bg-white dark:bg-brand-darkCard p-4 rounded-2xl shadow-xl shadow-brand-primary/5 border border-brand-primary/10"
-                >
-                  <div className="w-12 h-12 bg-brand-primary/10 rounded-xl shrink-0 flex items-center justify-center">
-                    <Users className="w-6 h-6 text-brand-primary" />
-                  </div>
-                  <div className="space-y-1">
-                    <h4 className="font-bold text-brand-dark dark:text-white">{t('problem.active.item3.title')}</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-200 leading-tight">{t('problem.active.item3.desc')}</p>
-                  </div>
-                </motion.div>
-              </div>
+        {/* SOLUCIÓN */}
+        <section
+          data-scroll-scene="projects"
+          data-scroll-zone="projects"
+          className="mosaic-editorial-section py-var-spacer-xl"
+          style={{ paddingTop: 'var(--spacer-xl)', paddingBottom: 'var(--spacer-xl)' }}
+        >
+          <div className="mosaic-container">
+            <SolutionSection />
+            <div className="mt-12 md:mt-16">
+              <AnimatedLink onClick={() => navigate('/soluciones')}>{t('solution.cta')}</AnimatedLink>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 3. Solución Section */}
-      <section className="py-32 bg-brand-dark text-white relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-brand-primary/20 to-transparent"></div>
-        <div className="max-w-7xl mx-auto px-4 relative z-10 text-center">
-          <h2 className="text-4xl md:text-6xl font-black mb-10 leading-tight max-w-4xl mx-auto">
-            {t('solution.headline')}
-          </h2>
-          <p className="text-xl text-white max-w-2xl mx-auto leading-relaxed mb-16">
-            {t('solution.copy')}
-          </p>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm">
-              <h4 className="text-2xl font-bold mb-4 text-brand-primary">Estrategia</h4>
-              <p className="text-sm text-white">Diseño del modelo de activación y escalabilidad.</p>
-            </div>
-            <div className="bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm">
-              <h4 className="text-2xl font-bold mb-4 text-brand-primary">Tecnología</h4>
-              <p className="text-sm text-white">Plataforma propia para tracking y gestión de red.</p>
-            </div>
-            <div className="bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm">
-              <h4 className="text-2xl font-bold mb-4 text-brand-primary">Operación</h4>
-              <p className="text-sm text-white">Gestión humana experta para asegurar el cierre.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Metodología Section */}
-      <section id="metodologia" className="py-32 bg-transparent">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-24">
-            <h2 className="text-4xl md:text-5xl font-black text-brand-dark dark:text-white mb-6">
+        {/* METODOLOGÍA */}
+        <SectionParallax
+          id="metodologia"
+          data-scroll-scene="methodology"
+          data-scroll-zone="methodology"
+          className="mosaic-editorial-section py-var-spacer-xxl"
+          style={{ paddingTop: 'var(--spacer-xxl)', paddingBottom: 'var(--spacer-xxl)' }}
+        >
+          <div className="mosaic-container">
+            <h2 className="mosaic-split-heading mosaic-h2-editorial mb-24 max-w-4xl">
               {t('methodology.headline')}
             </h2>
-          </div>
 
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-100 dark:bg-white/5 -translate-y-1/2"></div>
-            
-            <div className="grid lg:grid-cols-4 gap-12">
-              {[1, 2, 3, 4].map(i => (
-                <motion.div 
-                  key={i}
-                  whileInView={{ y: [20, 0], opacity: [0, 1] }}
-                  transition={{ delay: i * 0.1 }}
-                  onClick={() => toggleStep(i)}
-                  className="relative z-10 bg-white/40 dark:bg-brand-darkCard/40 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-gray-100/50 dark:border-white/5 text-center cursor-pointer hover:scale-[1.02] transition-all"
-                >
-                  <div className="w-16 h-16 bg-brand-primary text-white rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-8 shadow-lg shadow-brand-primary/20">
-                    {i}
-                  </div>
-                  <h3 className={`text-xl font-black mb-4 ${theme === 'dark' ? '!text-white' : 'text-brand-dark'}`}>
-                    {t(`methodology.step${i}.title`)}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+              {methodSteps.map((step) => (
+                <div key={step.num} className="scroll-method-step">
+                  <span className="mosaic-label text-mosaic-cyan block mb-8">{step.num}</span>
+                  <h3 className="text-xl md:text-2xl font-medium text-mosaic-black-500 mb-5 leading-tight">
+                    {step.title.replace(/^Fase \d+ – /, '')}
                   </h3>
-                  <AnimatePresence>
-                    {activeSteps.includes(i) && (
-                      <motion.p 
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        className={`text-sm leading-relaxed ${theme === 'dark' ? '!text-white font-bold' : 'text-gray-500'} overflow-hidden`}
-                      >
-                        {t(`methodology.step${i}.desc`)}
-                      </motion.p>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
+                  <p className="mosaic-body text-sm text-mosaic-black-300 leading-relaxed">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-20">
+              <AnimatedLink onClick={() => navigate('/metodologia')}>{t('methodology.exploreCta')}</AnimatedLink>
+            </div>
+          </div>
+        </SectionParallax>
+
+        {/* BENEFICIOS */}
+        <section
+          className="mosaic-editorial-section py-var-spacer-xl"
+          style={{ paddingTop: 'var(--spacer-xl)', paddingBottom: 'var(--spacer-xl)' }}
+        >
+          <div className="mosaic-container">
+            <h2 className="mosaic-split-heading mosaic-h2-editorial mb-20 max-w-3xl">
+              {t('benefits.headline')}
+            </h2>
+            <div className="space-y-0 divide-y divide-mosaic-white-300 border-t border-mosaic-white-300">
+              {benefits.map((b, i) => (
+                <div key={i} className="scroll-benefit-row py-10 md:py-12 grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
+                  <span className="mosaic-label text-mosaic-cyan md:col-span-2">0{i + 1}</span>
+                  <h3 className="text-xl md:text-2xl font-medium text-mosaic-black-500 md:col-span-4">{b.title}</h3>
+                  <p className="mosaic-body text-mosaic-black-300 md:col-span-6">{b.desc}</p>
+                </div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 5. Beneficios Section */}
-      <section className="py-32 bg-gray-50/20 dark:bg-brand-darkCard/5">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-black text-brand-dark dark:text-white mb-6">
-              {t('benefits.headline')}
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3, 4, 5].map(i => (
-              <motion.div 
-                key={i} 
-                layout
-                onClick={() => setActiveBenefit(activeBenefit === i ? null : i)}
-                className={`p-8 rounded-3xl shadow-sm border transition-all cursor-pointer flex flex-col gap-6 ${
-                  activeBenefit === i 
-                    ? 'bg-brand-primary text-white shadow-xl shadow-brand-primary/20 border-transparent ring-4 ring-brand-primary/10' 
-                    : 'bg-white dark:bg-brand-darkCard border-gray-100 dark:border-white/5 hover:shadow-xl'
-                }`}
-              >
-                <div className="flex items-center gap-6">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform ${
-                    activeBenefit === i ? 'bg-white/20 text-white' : 'bg-brand-primary/10 text-brand-primary group-hover:scale-110'
-                  }`}>
-                    {i === 1 ? <TrendingUp /> : i === 2 ? <Zap /> : i === 3 ? <BarChart3 /> : i === 4 ? <Users /> : <ShieldCheck />}
-                  </div>
-                  <h3 className={`text-lg font-bold leading-tight ${activeBenefit === i ? 'text-white' : 'text-brand-dark dark:text-white'}`}>
-                    {t(`benefits.item${i}.title`)}
-                  </h3>
-                </div>
-                <AnimatePresence>
-                  {activeBenefit === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
-                    >
-                      <p className="text-white/90 text-sm leading-relaxed font-medium">
-                        {t(`benefits.item${i}.desc`)}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Diferenciación Section */}
-      <section className="py-32 bg-white/20 dark:bg-brand-darkBg/10 backdrop-blur-[1px]">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-black text-brand-dark dark:text-white mb-6">
+        {/* DIFERENCIACIÓN */}
+        <section
+          className="mosaic-editorial-section py-var-spacer-xl"
+          style={{ paddingTop: 'var(--spacer-xl)', paddingBottom: 'var(--spacer-xl)' }}
+        >
+          <div className="mosaic-container">
+            <h2 className="mosaic-split-heading mosaic-h2-editorial mb-20 max-w-3xl">
               {t('diff.headline')}
             </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-10 rounded-[3rem] bg-gray-50 dark:bg-brand-dark-bg border border-gray-100 dark:border-white/5 opacity-60">
-              <div className="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center text-red-500 mb-8">
-                <X className="w-6 h-6" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="scroll-diff-card p-10 md:p-12 border border-mosaic-white-300">
+                <p className="mosaic-label text-mosaic-black-300 mb-4">{t('diff.notLabel')}</p>
+                <h3 className="text-2xl text-mosaic-black-500 mb-4">{t('diff.agencies.title')}</h3>
+                <p className="mosaic-body text-sm text-mosaic-black-300">{t('diff.agencies.desc')}</p>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-brand-dark dark:text-white">{t('diff.agencies.title')}</h3>
-              <p className="text-gray-500 dark:text-white">{t('diff.agencies.desc')}</p>
-            </div>
-            <div className="p-10 rounded-[3rem] bg-gray-50 dark:bg-brand-dark-bg border border-gray-100 dark:border-white/5 opacity-60">
-              <div className="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center text-red-500 mb-8">
-                <X className="w-6 h-6" />
+              <div className="scroll-diff-card p-10 md:p-12 border border-mosaic-white-300">
+                <p className="mosaic-label text-mosaic-black-300 mb-4">{t('diff.notLabel')}</p>
+                <h3 className="text-2xl text-mosaic-black-500 mb-4">{t('diff.saas.title')}</h3>
+                <p className="mosaic-body text-sm text-mosaic-black-300">{t('diff.saas.desc')}</p>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-brand-dark dark:text-white">{t('diff.saas.title')}</h3>
-              <p className="text-gray-500 dark:text-white">{t('diff.saas.desc')}</p>
-            </div>
-            <div className="p-10 rounded-[3rem] bg-brand-primary text-white shadow-2xl shadow-brand-primary/30 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 blur-3xl"></div>
-              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white mb-8">
-                <CheckCircle2 className="w-6 h-6" />
+              <div className="scroll-diff-card p-10 md:p-12 bg-mosaic-inverse text-mosaic-on-dark-100">
+                <p className="mosaic-label text-mosaic-cyan mb-4">{t('diff.areLabel')}</p>
+                <h3 className="text-2xl mb-4">{t('diff.us.title')}</h3>
+                <p className="mosaic-body text-sm text-mosaic-on-dark-400">{t('diff.us.desc')}</p>
               </div>
-              <h3 className="text-2xl font-bold mb-4">{t('diff.us.title')}</h3>
-              <p className="text-white/80">{t('diff.us.desc')}</p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 7. Casos Section */}
-      <section className="py-32 bg-gray-50/20 dark:bg-brand-darkCard/5">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-black text-brand-dark dark:text-white mb-6 max-w-4xl mx-auto">
+        {/* MÉTRICAS */}
+        <section
+          data-scroll-scene="metrics"
+          data-scroll-zone="metrics"
+          className="mosaic-editorial-section py-var-spacer-xl border-t border-mosaic-cyan/15"
+          style={{ paddingTop: 'var(--spacer-xl)', paddingBottom: 'var(--spacer-xl)' }}
+        >
+          <div className="mosaic-container">
+            <h2 className="mosaic-split-heading mosaic-h2-editorial mb-24 max-w-2xl">
               {t('cases.headline')}
             </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+              {cases.map((c) => (
+                <div key={c.label} className="scroll-metric">
+                  <p className="mosaic-metric-val scroll-metric-val">{c.val}</p>
+                  <p className="mosaic-label text-mosaic-black-300 mt-4">{c.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
+        </section>
 
-          <div className="grid md:grid-cols-3 gap-12">
-            {[1, 2, 3].map(i => (
-              <div key={i} className="text-center">
-                <p className="text-6xl font-black text-brand-primary mb-4">{t(`cases.metric${i}.val`)}</p>
-                <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">{t(`cases.metric${i}.label`)}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Modelo Section */}
-      <section className="py-32 bg-transparent">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="bg-brand-dark dark:bg-brand-dark-card rounded-[4rem] p-12 md:p-20 text-white relative overflow-hidden border border-transparent dark:border-white/5">
-            <div className="absolute bottom-0 right-0 w-64 h-64 bg-brand-primary/20 blur-[100px] rounded-full"></div>
-            <div className="relative z-10">
-              <h2 className="text-4xl md:text-5xl font-black mb-10">{t('model.headline')}</h2>
-              <p className="text-xl text-white/70 leading-relaxed mb-10 max-w-2xl">
-                {t('model.copy')}
-              </p>
-              <div className="flex items-center gap-4 text-2xl font-black text-brand-primary">
-                <Target className="w-8 h-8" />
-                {t('model.remate')}
+        {/* MODELO */}
+        <section
+          className="mosaic-editorial-section py-var-spacer-xl"
+          style={{ paddingTop: 'var(--spacer-xl)', paddingBottom: 'var(--spacer-xl)' }}
+        >
+          <div className="mosaic-container">
+            <div className="scroll-model-block relative overflow-hidden bg-mosaic-inverse p-12 md:p-24 text-mosaic-on-dark-100">
+              <div className="absolute inset-0 bg-gradient-to-br from-mosaic-cyan/10 to-transparent pointer-events-none" />
+              <div className="relative z-10 max-w-3xl">
+                <h2 className="mosaic-h2-editorial mb-8 text-mosaic-on-dark-100">{t('model.headline')}</h2>
+                <p className="mosaic-body-lg text-mosaic-on-dark-400 mb-10">{t('model.copy')}</p>
+                <p className="mosaic-h4 text-mosaic-cyan">{t('model.remate')}</p>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 9. FAQ Section */}
-      <section className="py-32 bg-gray-50/20 dark:bg-brand-dark-bg/20">
-        <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-4xl font-black text-brand-dark dark:text-white mb-16 text-center">{t('faq.title')}</h2>
-          <div className="space-y-4">
-            {[1, 2, 3, 4].map(i => (
-              <div key={i} className="bg-white dark:bg-brand-dark-card rounded-2xl border border-gray-100 dark:border-white/5 overflow-hidden">
-                <button 
-                  onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                  className="w-full p-6 text-left flex justify-between items-center"
-                >
-                  <span className="font-bold text-brand-dark dark:text-white">{t(`faq.q${i}`)}</span>
-                  <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform ${activeFaq === i ? 'rotate-180' : ''}`} />
-                </button>
-                <AnimatePresence>
-                  {activeFaq === i && (
-                    <motion.div 
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="px-6 pb-6 text-gray-500 dark:text-gray-200 text-sm leading-relaxed"
-                    >
-                      {t(`faq.a${i}`)}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+        {/* FAQ */}
+        <section
+          id="faq"
+          className="mosaic-editorial-section py-var-spacer-lg"
+          style={{ paddingTop: 'var(--spacer-lg)', paddingBottom: 'var(--spacer-lg)' }}
+        >
+          <div className="mosaic-container max-w-4xl">
+            <h2 className="mosaic-h2-editorial mb-16">{t('faq.title')}</h2>
+            <FaqAccordion items={faqItems} />
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 10. Final CTA Section */}
-      <section id="final-cta" className="py-20 px-4">
-        <div className="max-w-5xl mx-auto bg-brand-primary rounded-[4rem] p-12 md:p-24 text-center text-white shadow-2xl shadow-brand-primary/30 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/20 to-transparent"></div>
-          <div className="relative z-10">
-            <h2 className="text-4xl md:text-7xl font-black mb-8 leading-[1.1] tracking-tighter">{t('cta.final.title')}</h2>
-            <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto leading-relaxed">{t('cta.final.subtitle')}</p>
-            <div className="flex flex-col items-center gap-6">
-              <button className="px-12 py-6 bg-white dark:bg-brand-dark-card text-brand-primary dark:text-white rounded-2xl font-black text-xl hover:scale-105 transition-all shadow-2xl flex items-center gap-3">
-                {t('cta.final.btn')}
-                <ArrowRight className="w-6 h-6" />
-              </button>
-              <p className="text-sm text-white/60 font-bold uppercase tracking-widest">Diagnóstico gratuito en 48h</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Chat Floating Button (Visual only) */}
-      <div className="fixed bottom-8 right-8 z-40">
-        <button className="w-16 h-16 bg-brand-secondary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all group">
-          <MessageSquare className="w-8 h-8" />
-          <span className="absolute right-full mr-4 bg-white dark:bg-brand-darkCard text-brand-dark dark:text-white px-4 py-2 rounded-xl text-sm font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-gray-100 dark:border-white/5">
-            ¿Quieres activar tu red?
-          </span>
-        </button>
+        {/* CTA */}
+        <section id="final-cta" data-scroll-scene="footer" data-scroll-zone="footer">
+          <ContactBanner
+            title={t('cta.final.title')}
+            text={t('cta.final.subtitle')}
+            ctaLabel={t('cta.final.btn')}
+            onCta={() => navigate('/contacto')}
+          />
+        </section>
       </div>
     </div>
   );

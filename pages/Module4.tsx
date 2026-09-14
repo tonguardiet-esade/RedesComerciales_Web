@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { UserLevel } from '../types';
 import ChatAssistant from '../components/ChatAssistant';
 import ModuleProgress from '../components/ModuleProgress';
+import { AppPage, AppCard, BackToPortal } from '../components/mosaic/AppShell';
+import { ModuleContentView, ModuleResultView, QuizQuestionView } from '../components/mosaic/ModuleViews';
 
 const contentData: Record<number, { title: string, objective: string, content: string[] }> = {
   [UserLevel.EJEMPLOS_DE_VENTA]: {
@@ -217,73 +219,26 @@ const Module4 = () => {
 
   if (step === 'content') {
     return (
-        <div className="max-w-4xl mx-auto px-4 py-12 animate-fade-in">
-            <button onClick={() => navigate('/portal')} className="flex items-center gap-2 text-gray-400 hover:text-brand-primary font-bold text-[10px] uppercase tracking-widest mb-8 group transition-colors">
-              <svg className="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" /></svg>
-              Volver al panel
-            </button>
-            <ModuleProgress currentModule={4} userLevel={user.nivel_elegido} />
-            <div className="bg-white dark:bg-brand-darkCard p-10 md:p-12 rounded-[3rem] shadow-card border border-gray-100 dark:border-white/5">
-                <h1 className="text-3xl font-black text-brand-dark dark:text-white uppercase tracking-tighter mb-4">{moduleInfo.title}</h1>
-                <div className="bg-brand-primary/5 p-6 rounded-2xl border-l-4 border-brand-primary mb-8">
-                    <p className="text-xs font-black text-brand-primary uppercase tracking-widest mb-1">Objetivo del módulo</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 font-medium">{moduleInfo.objective}</p>
-                </div>
-                <div className="space-y-6 mb-10">
-                    {moduleInfo.content.map((p, i) => <p key={i} className="text-gray-500 dark:text-gray-400 leading-relaxed font-medium">{p}</p>)}
-                </div>
-                <button onClick={() => setStep('quiz')} className="w-full py-5 bg-brand-primary text-white rounded-2xl font-black uppercase tracking-[0.2em] shadow-xl hover:scale-[1.02] active:scale-95 transition-all">Realizar Test de Validación</button>
-            </div>
-        </div>
+      <ModuleContentView moduleNumber={4} userLevel={user.nivel_elegido} title={moduleInfo.title} objective={moduleInfo.objective} content={moduleInfo.content} onStartQuiz={() => setStep('quiz')} />
     );
   }
 
   if (showResult) {
       const passed = score === data.questions.length;
       return (
-          <div className="max-w-2xl mx-auto px-4 py-12 text-center animate-fade-in">
-              <ModuleProgress currentModule={4} userLevel={user.nivel_elegido} />
-              <div className={`p-10 rounded-[3rem] shadow-xl border-2 ${passed ? 'bg-blue-50 border-blue-200 dark:bg-blue-900/20 dark:border-blue-500/30' : 'bg-red-50 border-red-200 dark:bg-red-900/20 dark:border-red-500/30'}`}>
-                  <div className="text-6xl mb-4">{passed ? '📈' : '📚'}</div>
-                  <h2 className="text-3xl font-bold text-brand-dark dark:text-white mb-2">{passed ? '¡Módulo Superado!' : 'Necesitas repasar'}</h2>
-                  <p className="text-gray-600 dark:text-gray-400 mb-8">Has acertado {score} de {data.questions.length} preguntas.</p>
-                  {passed ? (
-                      <button onClick={() => navigate('/portal')} className="px-10 py-4 bg-brand-primary text-white rounded-full font-bold shadow-lg">Volver al Panel</button>
-                  ) : (
-                      <button onClick={() => { setStep('content'); setShowResult(false); setScore(0); setCurrentQuestion(0); }} className="px-8 py-3 bg-white dark:bg-brand-dark-card border border-brand-dark text-brand-dark dark:text-white rounded-full font-bold">Repasar Contenido</button>
-                  )}
-              </div>
-          </div>
-      )
+        <ModuleResultView moduleNumber={4} userLevel={user.nivel_elegido} passed={passed} score={score} total={data.questions.length} passedEmoji="📈" onBack={() => navigate('/portal')} onRetry={() => { setStep('content'); setShowResult(false); setScore(0); setCurrentQuestion(0); }} />
+      );
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-12">
+    <AppPage maxWidth="3xl">
+      <BackToPortal label="Salir del test" />
       <ModuleProgress currentModule={4} userLevel={user.nivel_elegido} />
-      <div className="bg-white dark:bg-brand-darkCard p-8 md:p-12 rounded-[2.5rem] shadow-card border border-gray-100 dark:border-white/5">
-        {/* Imagen Real del Cuestionario */}
-        <div className="mb-10 rounded-[2rem] overflow-hidden shadow-lg border border-gray-100 dark:border-white/5 bg-white">
-            <img src="/img/3.png" alt="Quiz Preview" className="w-full h-auto" referrerPolicy="no-referrer" />
-        </div>
-        <h2 className="text-xl font-bold text-brand-dark dark:text-white mb-10 leading-relaxed">{question.question}</h2>
-        <div className="space-y-4">
-            {question.options.map((opt, idx) => (
-                <button key={idx} onClick={() => !isAnswerChecked && setSelectedOption(idx)} className={`w-full text-left p-5 rounded-2xl border-2 transition-all font-bold text-sm ${isAnswerChecked ? (opt.correct ? 'bg-blue-50 border-blue-500 text-blue-800 dark:bg-blue-900/20 dark:border-blue-500/50 dark:text-blue-300' : (selectedOption === idx ? 'bg-red-50 border-red-500 text-red-800 dark:bg-red-900/20 dark:border-red-500/50 dark:text-red-300' : 'opacity-50 dark:text-gray-600')) : (selectedOption === idx ? 'bg-brand-light border-brand-primary text-brand-primary dark:bg-brand-primary/10 dark:border-brand-primary dark:text-brand-primary' : 'bg-white dark:bg-brand-dark-bg border-gray-100 dark:border-gray-800 dark:text-gray-300')}`}>
-                    <div className="flex items-center gap-4">
-                        <span className={`w-10 h-10 rounded-xl flex items-center justify-center text-xs border ${isAnswerChecked && opt.correct ? 'bg-blue-500 text-white border-blue-500' : (selectedOption === idx ? 'bg-brand-primary text-white border-brand-primary' : 'bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700')}`}>
-                            {String.fromCharCode(65 + idx)}
-                        </span>
-                        {opt.text}
-                    </div>
-                </button>
-            ))}
-        </div>
-        <div className="mt-12 flex justify-end">
-            {!isAnswerChecked && <button onClick={handleCheckAnswer} disabled={selectedOption === null} className="px-10 py-4 bg-brand-primary text-white rounded-full font-bold shadow-lg">Confirmar Respuesta</button>}
-        </div>
-      </div>
+      <AppCard>
+        <QuizQuestionView label="Cuestionario de validación" current={currentQuestion + 1} total={data.questions.length} question={question.question} options={question.options} selectedOption={selectedOption} isAnswerChecked={isAnswerChecked} onSelect={(idx) => !isAnswerChecked && setSelectedOption(idx)} onConfirm={handleCheckAnswer} />
+      </AppCard>
       <ChatAssistant context={`Módulo 4: Modelo económico`} />
-    </div>
+    </AppPage>
   );
 };
 

@@ -1,17 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { AppPage, AppCard } from '../components/mosaic/AppShell';
+import MosaicButton from '../components/mosaic/MosaicButton';
+import { useNavigate } from 'react-router-dom';
 
 const AccessDenied = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-red-500 mb-4">Acceso Denegado</h1>
-        <p className="text-gray-600 mb-8">No has completado los requisitos necesarios para acceder a esta sección.</p>
-        <Link to="/portal" className="text-brand-accent hover:underline font-medium">
-          Volver al Portal
-        </Link>
-      </div>
-    </div>
+    <AppPage maxWidth="lg" className="min-h-[60vh] flex items-center">
+      <AppCard className="text-center w-full">
+        <p className="mosaic-label text-red-500 mb-4">403</p>
+        <h1 className="mosaic-h3 mb-4">Acceso denegado</h1>
+        <p className="mosaic-body text-sm mb-8">
+          No has completado los requisitos necesarios para acceder a esta sección.
+        </p>
+        <MosaicButton fullWidth={false} className="px-10" onClick={() => navigate('/portal')}>
+          Volver al portal
+        </MosaicButton>
+      </AppCard>
+    </AppPage>
   );
 };
 
