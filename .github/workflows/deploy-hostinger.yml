@@ -1,4 +1,4 @@
-name: Build and test Hostinger
+name: Deploy Hostinger
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-test:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,12 +30,6 @@ jobs:
           VITE_PLATAFORMA_URL: https://plataforma.redescomerciales.pro
         run: npm run build
 
-      - name: Comprobar resultado
-        run: |
-          echo "Contenido generado en dist:"
-          ls -lah dist
-          test -f dist/index.html
-
       - name: Configurar SSH
         env:
           SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
@@ -47,13 +41,31 @@ jobs:
           chmod 600 ~/.ssh/hostinger_key
           ssh-keyscan -p "$PORT" "$HOST" >> ~/.ssh/known_hosts
 
-      - name: Probar conexión con Hostinger
+      - name: Preparar subida
         env:
           HOST: ${{ secrets.HOSTINGER_HOST }}
           PORT: ${{ secrets.HOSTINGER_PORT }}
           USER: ${{ secrets.HOSTINGER_USER }}
         run: |
-          ssh -i ~/.ssh/hostinger_key \
-            -p "$PORT" \
-            "$USER@$HOST" \
-            'echo "Conexion SSH con Hostinger OK"'
+          ssh -i ~/.ssh/hostinger_key -p "$PORT" "$USER@$HOST" \
+          'rm -rf ~/domains/redescomerciales.pro/deploy_temp && mkdir -p ~/domains/redescomerciales.pro/deploy_temp'
+
+      - name: Subir web compilada
+        env:
+          HOST: ${{ secrets.HOSTINGER_HOST }}
+          PORT: ${{ secrets.HOSTINGER_PORT }}
+          USER: ${{ secrets.HOSTINGER_USER }}
+        run: |
+          scp -i ~/.ssh/hostinger_key -P "$PORT" -r dist/. \
+          "$USER@$HOST:/home/$USER/domains/redescomerciales.pro/deploy_temp/"
+
+      - name: Publicar web
+        env:
+          HOST: ${{ secrets.HOSTINGER_HOST }}
+          PORT: ${{ secrets.HOSTINGER_PORT }}
+          USER: ${{ secrets.HOSTINGER_USER }}
+        run: |
+          ssh -i ~/.ssh/hostinger_key -p "$PORT" "$USER@$HOST" \
+          'find ~/domains/redescomerciales.pro/public_html -mindepth 1 -maxdepth 1 ! -name ".git" -exec rm -rf {} + &&
+          cp -a ~/domains/redescomerciales.pro/deploy_temp/. ~/domains/redescomerciales.pro/public_html/ &&
+          rm -rf ~/domains/redescomerciales.pro/deploy_temp'
