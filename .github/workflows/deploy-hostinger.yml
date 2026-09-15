@@ -1,0 +1,59 @@
+name: Build and test Hostinger
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Compilar web
+        env:
+          VITE_SITE_URL: https://redescomerciales.pro
+          VITE_SALES_URL: https://sales.redescomerciales.pro
+          VITE_PLATAFORMA_URL: https://plataforma.redescomerciales.pro
+        run: npm run build
+
+      - name: Comprobar resultado
+        run: |
+          echo "Contenido generado en dist:"
+          ls -lah dist
+          test -f dist/index.html
+
+      - name: Configurar SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          HOST: ${{ secrets.HOSTINGER_HOST }}
+          PORT: ${{ secrets.HOSTINGER_PORT }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/hostinger_key
+          chmod 600 ~/.ssh/hostinger_key
+          ssh-keyscan -p "$PORT" "$HOST" >> ~/.ssh/known_hosts
+
+      - name: Probar conexión con Hostinger
+        env:
+          HOST: ${{ secrets.HOSTINGER_HOST }}
+          PORT: ${{ secrets.HOSTINGER_PORT }}
+          USER: ${{ secrets.HOSTINGER_USER }}
+        run: |
+          ssh -i ~/.ssh/hostinger_key \
+            -p "$PORT" \
+            "$USER@$HOST" \
+            'echo "Conexion SSH con Hostinger OK"'
