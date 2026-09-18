@@ -11,6 +11,7 @@ import CommunicationsCenter from './CommunicationsCenter';
 import MarketingSupportModal from './MarketingSupportModal';
 import CustomCursor from './mosaic/CustomCursor';
 import CookieConsent from './mosaic/CookieConsent';
+import WhatsAppButton from './mosaic/WhatsAppButton';
 import StructuredData from './seo/StructuredData';
 import { useSettings } from '../context/SettingsContext';
 import { usePageSeo } from '../hooks/usePageSeo';
@@ -32,7 +33,7 @@ const LayoutInner = ({ children }: LayoutProps) => {
   const isMarketing = MARKETING_PATHS.includes(location.pathname);
   const showVisualField = location.pathname === '/';
   usePageSeo();
-  const faqItems = useFaqItems();
+  const faqItems = useFaqItems(10);
   const homeFaq = location.pathname === '/' ? faqItems : undefined;
 
   useEffect(() => {
@@ -97,6 +98,7 @@ const LayoutInner = ({ children }: LayoutProps) => {
       </main>
 
       {isMarketing && location.pathname !== '/contacto' && <StickyCta />}
+      {isMarketing && <WhatsAppButton variant="float" />}
 
       <CommunicationsCenter isOpen={isCommCenterOpen} onClose={() => setIsCommCenterOpen(false)} />
       <MarketingSupportModal isOpen={isMarketingSupportOpen} onClose={() => setIsMarketingSupportOpen(false)} />

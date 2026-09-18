@@ -6,6 +6,7 @@ import { useUser } from '../../context/UserContext';
 import { useSettings } from '../../context/SettingsContext';
 import { usePageContent } from '../../hooks/usePageContent';
 import { EXTERNAL_LINKS } from '../../config/externalLinks';
+import WhatsAppButton from './WhatsAppButton';
 
 const LANGUAGES = [
   { code: 'es' as const, label: 'ES' },
@@ -97,24 +98,27 @@ const MosaicHeader = () => {
           scrolled ? 'bg-mosaic-white-200/95 backdrop-blur-sm border-b border-mosaic-white-300/60' : 'bg-transparent'
         }`}
       >
-        <div className="mosaic-container h-16 md:h-20 flex items-center justify-between">
+        <div className="mosaic-container h-16 md:h-20 grid grid-cols-[auto_1fr_auto] items-center gap-3 md:gap-4">
           <Link
             to="/"
-            className="flex items-center gap-2 mosaic-focus-ring rounded-sm"
+            className="flex items-center gap-2 shrink-0 mosaic-focus-ring rounded-sm"
             aria-label="Redescomerciales.ai — inicio"
           >
             <img src={logo} alt="" className="w-7 h-7 md:w-8 md:h-8" aria-hidden="true" />
-            <span className="mosaic-label text-mosaic-black-500 hidden sm:inline">
+            <span className="mosaic-label text-mosaic-black-500 hidden xl:inline whitespace-nowrap">
               Redescomerciales<span className="text-mosaic-cyan">.ai</span>
             </span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-8" aria-label={t('a11y.mainNav')}>
+          <nav
+            className="hidden min-[1100px]:flex items-center justify-center gap-4 xl:gap-6 min-w-0 px-1"
+            aria-label={t('a11y.mainNav')}
+          >
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 to={item.path}
-                className={navClass(item.path)}
+                className={`${navClass(item.path)} whitespace-nowrap`}
                 aria-current={isActive(item.path) ? 'page' : undefined}
               >
                 {item.label}
@@ -122,7 +126,7 @@ const MosaicHeader = () => {
             ))}
           </nav>
 
-          <div className="flex items-center gap-4 md:gap-6">
+          <div className="flex items-center justify-end gap-2 md:gap-3 xl:gap-4 shrink-0">
             <div className="relative hidden md:block" ref={langRef}>
               <button
                 type="button"
@@ -172,9 +176,12 @@ const MosaicHeader = () => {
               )}
             </button>
 
-            <span className="mosaic-label text-mosaic-black-300 hidden md:inline" aria-hidden="true">
+            <span className="mosaic-label text-mosaic-black-300 hidden xl:inline whitespace-nowrap" aria-hidden="true">
               {lang} {timeStr}
             </span>
+
+            {!user && <WhatsAppButton variant="nav-mobile" />}
+            {!user && <WhatsAppButton variant="nav" />}
 
             {user ? (
               <button
@@ -209,7 +216,7 @@ const MosaicHeader = () => {
               ref={menuButtonRef}
               type="button"
               onClick={() => setMenuOpen(true)}
-              className="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer mosaic-focus-ring rounded-sm"
+              className="min-[1100px]:hidden flex flex-col gap-1.5 p-2 cursor-pointer mosaic-focus-ring rounded-sm"
               aria-label={t('a11y.openMenu')}
               aria-expanded={menuOpen}
               aria-controls="mobile-main-nav"

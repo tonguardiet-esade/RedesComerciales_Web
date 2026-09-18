@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MapPin, Mail, Phone, Clock, MessageCircle } from 'lucide-react';
+import { MapPin, Mail, Phone, Clock } from 'lucide-react';
 import PageHero from '../components/mosaic/PageHero';
 import ContactForm from '../components/mosaic/ContactForm';
 import { Link } from 'react-router-dom';
@@ -9,6 +9,7 @@ import { getScrollBehavior, usePrefersReducedMotion } from '../hooks/usePrefersR
 import { useLandingScrollEffects } from '../hooks/useLandingScrollEffects';
 import { usePageContent } from '../hooks/usePageContent';
 import { useSettings } from '../context/SettingsContext';
+import WhatsAppButton from '../components/mosaic/WhatsAppButton';
 import { CONTACT_INFO, CONTACT_MAP_EMBED_URL } from '../config/contactInfo';
 
 const PATH_LINKS = ['/soluciones', '/casos-de-exito'] as const;
@@ -56,14 +57,6 @@ const ContactPage = () => {
           label: contact.info.hoursLabel,
           value: CONTACT_INFO.hours,
           href: undefined,
-        }]
-      : []),
-    ...(CONTACT_INFO.whatsapp
-      ? [{
-          icon: MessageCircle,
-          label: contact.info.whatsappLabel,
-          value: CONTACT_INFO.whatsapp,
-          href: CONTACT_INFO.whatsapp,
         }]
       : []),
   ];
@@ -173,6 +166,12 @@ const ContactPage = () => {
                   );
                 })}
               </ul>
+
+              <div className="scroll-reveal-body space-y-4 pt-2 border-t border-mosaic-white-300">
+                <p className="mosaic-label text-mosaic-black-300">{t('contact.direct.title')}</p>
+                <WhatsAppButton variant="block" labelKey="whatsapp.cta" />
+                <p className="mosaic-body text-sm text-mosaic-black-300">{t('contact.direct.note')}</p>
+              </div>
 
               <button
                 type="button"

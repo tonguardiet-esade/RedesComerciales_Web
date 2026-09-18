@@ -11,7 +11,7 @@ export type CookieCategory = {
   items: CookieEntry[];
 };
 
-/** Inventario de cookies utilizadas en redescomerciales.ai */
+/** Inventario de cookies utilizadas en redescomerciales.pro */
 export const COOKIE_CATEGORIES: CookieCategory[] = [
   {
     id: 'necessary',

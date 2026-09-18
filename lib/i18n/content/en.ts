@@ -13,7 +13,7 @@ export const enContent: PageContent = {
     openMenu: 'Open menu',
   },
   footer: {
-    tagline: 'Turn collaborators into an active sales network through technology and expert management.',
+    tagline: 'Activate, follow and scale your indirect commercial network with methodology, technology and expert operations.',
     address: 'Avda Diagonal, 523, 1st 2. Barcelona',
     explore: 'Explore',
     legal: 'Legal',
@@ -28,15 +28,15 @@ export const enContent: PageContent = {
       label: '/ Solutions',
       title: 'You already have the contacts.',
       titleHighlight: 'What you lack is the system',
-      titleSuffix: 'to turn them into sales.',
+      titleSuffix: 'to turn them into business opportunities.',
       subtitle: 'We help B2B CEOs and Sales Directors activate their underutilized network and scale without increasing fixed costs.',
       ctaSuccessCases: 'View success stories',
-      ctaDiagnosis: 'Request diagnosis',
+      ctaDiagnosis: 'Request commercial network diagnosis',
     },
     personas: {
       sectionTitle: 'Profiles we',
-      sectionTitleHighlight: 'transform',
-      sectionSubtitle: 'Different realities, one shared goal: monetize relational capital.',
+      sectionTitleHighlight: 'work with',
+      sectionSubtitle: 'Same need: activate the network and turn relationships into opportunities with follow-up.',
       labels: {
         company: 'Company:',
         responsibility: 'Responsibility:',
@@ -67,9 +67,9 @@ export const enContent: PageContent = {
             network: "Extensive but with 'dormant' contacts.",
           },
           pains: [
-            'We eliminate dependence on the internal sales team.',
-            'We systematize partner activation.',
-            'We recover lost sales due to lack of follow-up.',
+            'Extensive network with dormant contacts.',
+            'Partners without systematic activation.',
+            'Opportunities lost due to lack of follow-up.',
           ],
           needs: 'Activate contact network and generate an additional channel without increasing headcount.',
           motivations: 'Scalability without increasing fixed costs.',
@@ -120,18 +120,18 @@ export const enContent: PageContent = {
           },
           pains: [
             'We organize chaos in opportunity management.',
-            'We provide full traceability on lead closing.',
+            'Lack of structured follow-up on network opportunities.',
             'We ensure transparent commission collection.',
           ],
           needs: 'Turn the ability to connect people into a business model.',
           motivations: 'Scale their community into a real business hub.',
           objections: 'Will my members feel comfortable?',
           values: {
-            tech: 'AI to assign roles and optimize relationships.',
+            tech: 'Structured tracking of opportunities within the network.',
             strat: 'Model based on network success.',
             ops: 'Ease of use and fast onboarding.',
           },
-          message: 'Turn your ability to connect people into predictable income.',
+          message: 'Organise your community opportunities with systematic activation and follow-up.',
         },
         {
           id: 3,
@@ -145,9 +145,9 @@ export const enContent: PageContent = {
             network: 'Technology partners and agencies.',
           },
           pains: [
-            'We provide full visibility of the indirect pipeline.',
-            'We digitize onboarding, eliminating manual friction.',
-            'We turn the partner channel into a predictable source.',
+            'Little control over the partner channel indirect pipeline.',
+            'Manual onboarding and inconsistent processes.',
+            'Difficulty demonstrating indirect channel traction.',
           ],
           needs: 'Automate partner lifecycle and pipeline visibility.',
           motivations: 'Demonstrate predictability of the indirect channel.',
@@ -189,8 +189,8 @@ export const enContent: PageContent = {
     },
     coreValues: [
       {
-        title: 'Total Control',
-        desc: 'Know what opportunities exist, their status, and who manages them in real time.',
+        title: 'Indirect channel visibility',
+        desc: 'Know what is happening in the network, the status of opportunities, and who manages them.',
       },
       {
         title: 'Real Scalability',
@@ -204,7 +204,8 @@ export const enContent: PageContent = {
     painPoints: {
       sectionTitle: 'Does this sound',
       sectionTitleHighlight: 'familiar',
-      sectionSubtitle: 'We identify and resolve the bottlenecks holding back your growth.',
+      sectionSubtitle:
+        'If you recognise any of these problems, the next step is to structure activation, follow-up and visibility for your network.',
       groups: [
         {
           title: 'Strategic Problems',
@@ -246,8 +247,8 @@ export const enContent: PageContent = {
         {
           category: 'Technological',
           items: [
-            'AI that assigns roles and optimizes relationships',
-            'Automation of complex commercial workflows',
+            'Systematic follow-up of partners and collaborators',
+            'Consistent activation and opportunity reporting processes',
           ],
         },
       ],
@@ -256,8 +257,8 @@ export const enContent: PageContent = {
     },
     contactBanner: {
       title: 'Ready to activate your commercial network?',
-      text: 'Turn dormant contacts into a predictable and scalable sales channel.',
-      ctaLabel: 'Request free diagnosis',
+      text: 'Turn dormant contacts into a channel with activation, visibility and systematic follow-up.',
+      ctaLabel: 'Request commercial network diagnosis',
     },
   },
   successCases: {
@@ -278,20 +279,20 @@ export const enContent: PageContent = {
         challenge: "Network of 2,000 'dormant' contacts and total dependence on the CEO for lead generation.",
         solution: 'Activation of the Online Commercial Network system and automated referral management.',
         results: [
-          '+35% qualified leads in the first quarter',
-          'Entry into 2 international markets without physical offices',
-          '400% return on investment (ROI) in 6 months',
+          'More qualified leads from the network in the first quarter',
+          'Entry into new international markets without physical offices',
+          'Positive return on investment in the indirect channel',
         ],
-        tags: ['B2B', 'ROI 400%'],
+        tags: ['B2B', 'Indirect channel'],
       },
       {
         title: 'SaaS Software (Scale-up)',
         challenge: 'Opaque partner program with lack of pipeline predictability.',
-        solution: 'Digitized onboarding and full traceability of commercial introductions.',
+        solution: 'Digitized onboarding and structured tracking of commercial introductions.',
         results: [
-          '50% reduction in indirect sales closing time',
-          '20% increase in MRR from channel',
-          '100% visibility on each partner\'s activities',
+          'Notable reduction in indirect sales closing time',
+          'Greater channel contribution to recurring revenue',
+          'Visibility over each partner\'s activities',
         ],
         tags: ['SaaS', 'Partners'],
       },
@@ -300,8 +301,8 @@ export const enContent: PageContent = {
         challenge: 'No commercial synergy among the fund\'s 12 portfolio companies.',
         solution: 'Creation of a shared commercial HUB based on the Redescomerciales.ai methodology.',
         results: [
-          '8 cross-sales generated organically in one year',
-          '15% reduction in customer acquisition cost (CAC)',
+          'Cross-sales generated organically among portfolio companies',
+          'Reduction in acquisition cost in the indirect channel',
           'Accelerated growth in stagnant companies',
         ],
         tags: ['Portfolio', 'HUB'],
@@ -311,15 +312,15 @@ export const enContent: PageContent = {
       sectionTitle: 'Metrics that',
       sectionTitleHighlight: 'speak',
       items: [
-        { val: '+40%', label: 'Partner activation' },
-        { val: '+250', label: 'Leads generated' },
-        { val: '400%', label: 'Average ROI' },
+        { val: 'Activation', label: 'Systematic for partners and collaborators' },
+        { val: 'Visibility', label: 'Of the indirect pipeline' },
+        { val: 'Opportunities', label: 'Generated from the commercial network' },
       ],
     },
     contactBanner: {
       title: 'Want to be the next success story?',
-      text: 'Activate your commercial network today and start seeing measurable results in less than 90 days.',
-      ctaLabel: 'Request network audit',
+      text: 'Activate your indirect commercial network and start seeing early activation indicators.',
+      ctaLabel: 'Request commercial network diagnosis',
     },
   },
   methodology: {
@@ -327,7 +328,7 @@ export const enContent: PageContent = {
       label: '/ Methodology',
       title: 'Our',
       titleHighlight: 'methodology',
-      subtitle: 'A proven system to transform passive commercial networks into active and scalable sales channels.',
+      subtitle: 'Four phases to activate passive commercial networks and turn them into channels with follow-up and visibility.',
     },
     intro: 'A',
     introHighlight: 'systematic',
@@ -395,7 +396,7 @@ export const enContent: PageContent = {
         title: 'Phase 4 – Monitoring and Optimization',
         desc: 'We implement a continuous analysis system that allows us to precisely measure network effectiveness and optimize each of its processes. This phase is key to ensuring sustained growth and constant performance improvement.',
         longDesc:
-          'Through advanced analytics tools:\n\n• We monitor collaborator behavior in real time, identifying patterns, bottlenecks, and improvement opportunities.\n• We evaluate performance at each workflow stage to detect inefficiencies and apply strategic adjustments.\n• We make decisions based on real data, allowing us to quickly adapt strategies to environmental or market changes.\n\nThis dynamic approach ensures your network not only functions correctly but evolves continuously, reaching ever higher levels of efficiency and profitability.',
+          'Through advanced analytics tools:\n\n• We monitor collaborator behavior in real time, identifying patterns, bottlenecks, and improvement opportunities.\n• We evaluate performance at each workflow stage to detect inefficiencies and apply strategic adjustments.\n• We make decisions based on real data, allowing us to quickly adapt strategies to environmental or market changes.\n\nThis approach lets you review what works in the network, adjust execution, and improve follow-up of the indirect channel.',
         visualTitle:
           'Here we can see examples of ads we would run to track our clients, supporting and accompanying them throughout the process:',
         imagesCount: 2,
@@ -404,7 +405,7 @@ export const enContent: PageContent = {
     contactBanner: {
       title: 'Ready to activate your network?',
       text: 'Our methodology adapts to the specific needs of your sector and product type.',
-      ctaLabel: 'Request network audit',
+      ctaLabel: 'Request commercial network diagnosis',
     },
   },
   contact: {
@@ -413,7 +414,7 @@ export const enContent: PageContent = {
       label: '/ Contact',
       title: "Let's talk about your commercial network",
       subtitle:
-        'Tell us about your context and we will get back to you within 24 hours with a proposal tailored to your company.',
+        'Tell us about your context. We will contact you within 24 business hours to understand your network and assess an initial diagnosis.',
     },
     paths: {
       sectionTitle: 'Do you have a question?',
@@ -439,7 +440,7 @@ export const enContent: PageContent = {
       locationLabel: 'Location',
       addressLabel: 'Address',
       emailLabel: 'Email',
-      phoneLabel: 'Phone',
+      phoneLabel: 'Phone / WhatsApp',
       hoursLabel: 'Business hours',
       mapTitle: 'Where we are',
       whatsappLabel: 'WhatsApp',
@@ -447,7 +448,8 @@ export const enContent: PageContent = {
     },
     form: {
       sectionTitle: 'Send us a message',
-      sectionSubtitle: 'Fill in the form and our team will get in touch with you.',
+      sectionSubtitle:
+        'Describe your situation with partners or collaborators. We will respond to understand your context and assess an initial diagnosis with no commitment.',
     },
     faq: {
       sectionTitle: 'Frequently asked questions',

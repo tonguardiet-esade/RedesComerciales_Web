@@ -13,7 +13,7 @@ export const esContent: PageContent = {
     openMenu: 'Abrir menú',
   },
   footer: {
-    tagline: 'Transforma colaboradores en una red de ventas activa mediante tecnología y gestión experta.',
+    tagline: 'Activa, sigue y escala tu red comercial indirecta con metodología, tecnología y operación experta.',
     address: 'Avda Diagonal, 523, 1er 2. Barcelona',
     explore: 'Explorar',
     legal: 'Legal',
@@ -28,15 +28,15 @@ export const esContent: PageContent = {
       label: '/ Soluciones',
       title: 'Ya tienes los contactos.',
       titleHighlight: 'Lo que te falta es el sistema',
-      titleSuffix: 'para convertirlos en ventas.',
+      titleSuffix: 'para convertirlos en oportunidades comerciales.',
       subtitle: 'Ayudamos a CEOs y Directores Comerciales de empresas B2B a activar su red infrautilizada y escalar sin aumentar costes fijos.',
       ctaSuccessCases: 'Ver casos de éxito',
-      ctaDiagnosis: 'Solicitar diagnóstico',
+      ctaDiagnosis: 'Solicitar diagnóstico de red comercial',
     },
     personas: {
-      sectionTitle: 'Perfiles que',
-      sectionTitleHighlight: 'transformamos',
-      sectionSubtitle: 'Diferentes realidades, un mismo objetivo: monetizar el capital relacional.',
+      sectionTitle: 'Perfiles con los que',
+      sectionTitleHighlight: 'trabajamos',
+      sectionSubtitle: 'Misma necesidad: activar la red y convertir relaciones en oportunidades con seguimiento.',
       labels: {
         company: 'Empresa:',
         responsibility: 'Responsabilidad:',
@@ -67,9 +67,9 @@ export const esContent: PageContent = {
             network: "Extensa pero contactos 'dormidos'.",
           },
           pains: [
-            'Eliminamos la dependencia del equipo comercial interno.',
-            'Sistematizamos la activación de partners.',
-            'Recuperamos ventas perdidas por falta de seguimiento.',
+            'Red extensa con contactos dormidos.',
+            'Partners sin activación sistemática.',
+            'Oportunidades que se pierden por falta de seguimiento.',
           ],
           needs: 'Activar red de contactos y generar canal adicional sin aumentar plantilla.',
           motivations: 'Escalabilidad sin incrementar costes fijos.',
@@ -120,18 +120,18 @@ export const esContent: PageContent = {
           },
           pains: [
             'Organizamos el caos en la gestión de oportunidades.',
-            'Aportamos trazabilidad total sobre el cierre de leads.',
+            'Falta de seguimiento estructurado sobre las oportunidades de la red.',
             'Aseguramos el cobro de comisiones de forma transparente.',
           ],
           needs: 'Convertir la capacidad de conectar personas en un modelo de negocio.',
           motivations: 'Escalar su comunidad a un hub de negocio real.',
           objections: '¿Mis miembros se sentirán cómodos?',
           values: {
-            tech: 'IA para asignar roles y optimizar relaciones.',
+            tech: 'Seguimiento estructurado de oportunidades dentro de la red.',
             strat: 'Modelo basado en el éxito de la red.',
             ops: 'Facilidad de uso y onboarding rápido.',
           },
-          message: 'Transforma tu capacidad de conectar personas en ingresos predecibles.',
+          message: 'Organiza las oportunidades de tu comunidad con activación y seguimiento sistemático.',
         },
         {
           id: 3,
@@ -145,9 +145,9 @@ export const esContent: PageContent = {
             network: 'Partners tecnológicos y agencias.',
           },
           pains: [
-            'Aportamos visibilidad total del pipeline indirecto.',
-            'Digitalizamos el onboarding eliminando fricción manual.',
-            'Convertimos el canal partner en fuente predecible.',
+            'Poco control sobre el pipeline indirecto del canal partner.',
+            'Onboarding manual y procesos poco homogéneos.',
+            'Dificultad para demostrar la tracción del canal indirecto.',
           ],
           needs: 'Automatizar ciclo de vida del partner y visibilidad pipeline.',
           motivations: 'Demostrar la predictibilidad del canal indirecto.',
@@ -189,8 +189,8 @@ export const esContent: PageContent = {
     },
     coreValues: [
       {
-        title: 'Control Total',
-        desc: 'Saber qué oportunidades existen, en qué estado están y quién las gestiona en tiempo real.',
+        title: 'Visibilidad del canal indirecto',
+        desc: 'Saber qué ocurre en la red, en qué estado están las oportunidades y quién las gestiona.',
       },
       {
         title: 'Escalabilidad Real',
@@ -204,7 +204,8 @@ export const esContent: PageContent = {
     painPoints: {
       sectionTitle: '¿Te resulta',
       sectionTitleHighlight: 'familiar',
-      sectionSubtitle: 'Identificamos y resolvemos los cuellos de botella que frenan tu crecimiento.',
+      sectionSubtitle:
+        'Si reconoces alguno de estos problemas, el siguiente paso es estructurar activación, seguimiento y visibilidad de tu red.',
       groups: [
         {
           title: 'Problemas Estratégicos',
@@ -246,8 +247,8 @@ export const esContent: PageContent = {
         {
           category: 'Tecnológicos',
           items: [
-            'IA que asigna roles y optimiza relaciones',
-            'Automatización de flujos comerciales complejos',
+            'Seguimiento sistemático de partners y colaboradores',
+            'Procesos homogéneos de activación y reporte de oportunidades',
           ],
         },
       ],
@@ -256,8 +257,8 @@ export const esContent: PageContent = {
     },
     contactBanner: {
       title: '¿Listo para activar tu red comercial?',
-      text: 'Convierte contactos dormidos en un canal de ventas predecible y escalable.',
-      ctaLabel: 'Solicitar diagnóstico gratuito',
+      text: 'Convierte contactos dormidos en un canal con activación, visibilidad y seguimiento sistemático.',
+      ctaLabel: 'Solicitar diagnóstico de red comercial',
     },
   },
   successCases: {
@@ -278,20 +279,20 @@ export const esContent: PageContent = {
         challenge: "Red de 2.000 contactos 'dormida' y dependencia total del CEO para captación.",
         solution: 'Activación del sistema de Red Comercial Online y gestión automatizada de referidos.',
         results: [
-          '+35% de Leads cualificado en el primer trimestre',
-          'Apertura de 2 mercados internacionales sin delegaciones físicas',
-          'Retorno de inversión (ROI) del 400% en 6 meses',
+          'Más leads cualificados desde la red en el primer trimestre',
+          'Apertura de nuevos mercados internacionales sin delegaciones físicas',
+          'Retorno positivo de la inversión en canal indirecto',
         ],
-        tags: ['B2B', 'ROI 400%'],
+        tags: ['B2B', 'Canal indirecto'],
       },
       {
         title: 'Software SaaS (Scale-up)',
         challenge: 'Programa de partners opaco con falta de predictibilidad en el pipeline.',
-        solution: 'Digitalización del onboarding y trazabilidad total de introducciones comerciales.',
+        solution: 'Digitalización del onboarding y seguimiento estructurado de introducciones comerciales.',
         results: [
-          'Reducción del 50% en el tiempo de cierre de ventas indirectas',
-          'Incremento del 20% en el MRR proveniente de canal',
-          'Visibilidad 100% sobre las gestiones de cada partner',
+          'Reducción notable del tiempo de cierre de ventas indirectas',
+          'Mayor contribución del canal al ingreso recurrente',
+          'Visibilidad sobre las gestiones de cada partner',
         ],
         tags: ['SaaS', 'Partners'],
       },
@@ -300,8 +301,8 @@ export const esContent: PageContent = {
         challenge: 'Nula sinergia comercial entre las 12 participadas del fondo.',
         solution: 'Creación de un HUB comercial compartido basado en la metodología Redescomerciales.ai.',
         results: [
-          '8 ventas cruzadas generadas de forma orgánica en un año',
-          'Reducción del coste de adquisición (CAC) en un 15%',
+          'Ventas cruzadas generadas de forma orgánica entre participadas',
+          'Reducción del coste de adquisición en el canal indirecto',
           'Aceleración del crecimiento en empresas estancadas',
         ],
         tags: ['Portfolio', 'HUB'],
@@ -311,15 +312,15 @@ export const esContent: PageContent = {
       sectionTitle: 'Métricas que',
       sectionTitleHighlight: 'hablan',
       items: [
-        { val: '+40%', label: 'Activación de partners' },
-        { val: '+250', label: 'Leads generados' },
-        { val: '400%', label: 'ROI medio' },
+        { val: 'Activación', label: 'Sistemática de partners y colaboradores' },
+        { val: 'Visibilidad', label: 'Del pipeline indirecto' },
+        { val: 'Oportunidades', label: 'Generadas desde la red comercial' },
       ],
     },
     contactBanner: {
       title: '¿Quieres ser el próximo caso de éxito?',
-      text: 'Activa hoy mismo tu red comercial y empieza a ver resultados medibles en menos de 90 días.',
-      ctaLabel: 'Solicitar auditoría de red',
+      text: 'Activa tu red comercial indirecta y empieza a ver indicadores tempranos de activación.',
+      ctaLabel: 'Solicitar diagnóstico de red comercial',
     },
   },
   methodology: {
@@ -327,7 +328,7 @@ export const esContent: PageContent = {
       label: '/ Metodología',
       title: 'Nuestra',
       titleHighlight: 'metodología',
-      subtitle: 'Un sistema probado para transformar redes comerciales pasivas en canales de venta activos y escalables.',
+      subtitle: 'Cuatro fases para activar redes comerciales pasivas y convertirlas en canales con seguimiento y visibilidad.',
     },
     intro: 'Un enfoque',
     introHighlight: 'sistemático',
@@ -395,7 +396,7 @@ export const esContent: PageContent = {
         title: 'Fase 4 – Seguimiento y Optimización',
         desc: 'Implementamos un sistema de análisis continuo que nos permite medir de forma precisa la efectividad de la red y optimizar cada uno de sus procesos. Esta fase es clave para asegurar el crecimiento sostenido y la mejora constante del rendimiento.',
         longDesc:
-          'A través de herramientas de analítica avanzada:\n\n• Monitorizamos en tiempo real el comportamiento de los colaboradores, identificando patrones, cuellos de botella y oportunidades de mejora.\n• Evaluamos el rendimiento de cada etapa del flujo de trabajo para detectar ineficiencias y aplicar ajustes estratégicos.\n• Tomamos decisiones basadas en datos reales, lo que nos permite adaptar rápidamente las estrategias ante cambios del entorno o del mercado.\n\nEste enfoque dinámico garantiza que tu red no solo funcione correctamente, sino que evolucione de forma continua, alcanzando niveles cada vez más altos de eficiencia y rentabilidad.',
+          'A través de herramientas de analítica avanzada:\n\n• Monitorizamos en tiempo real el comportamiento de los colaboradores, identificando patrones, cuellos de botella y oportunidades de mejora.\n• Evaluamos el rendimiento de cada etapa del flujo de trabajo para detectar ineficiencias y aplicar ajustes estratégicos.\n• Tomamos decisiones basadas en datos reales, lo que nos permite adaptar rápidamente las estrategias ante cambios del entorno o del mercado.\n\nEste enfoque permite revisar qué funciona en la red, ajustar la ejecución y mejorar el seguimiento del canal indirecto.',
         visualTitle:
           'Aquí podemos ver ejemplos de anuncios que realizaríamos para tener un seguimiento de nuestros clientes, respaldándolos y acompañándolos en todo el proceso:',
         imagesCount: 2,
@@ -404,7 +405,7 @@ export const esContent: PageContent = {
     contactBanner: {
       title: '¿Listo para activar tu red?',
       text: 'Nuestra metodología se adapta a las necesidades específicas de tu sector y tipo de producto.',
-      ctaLabel: 'Solicitar auditoría de red',
+      ctaLabel: 'Solicitar diagnóstico de red comercial',
     },
   },
   contact: {
@@ -413,7 +414,7 @@ export const esContent: PageContent = {
       label: '/ Contacto',
       title: 'Hablemos de tu red comercial',
       subtitle:
-        'Cuéntanos tu contexto y te responderemos en menos de 24 horas con una propuesta adaptada a tu empresa.',
+        'Cuéntanos tu contexto. Te contactamos en menos de 24 horas laborables para entender tu red y valorar un diagnóstico inicial.',
     },
     paths: {
       sectionTitle: '¿Tienes alguna pregunta?',
@@ -439,7 +440,7 @@ export const esContent: PageContent = {
       locationLabel: 'Ubicación',
       addressLabel: 'Dirección',
       emailLabel: 'Correo electrónico',
-      phoneLabel: 'Teléfono',
+      phoneLabel: 'Teléfono / WhatsApp',
       hoursLabel: 'Horario de atención',
       mapTitle: 'Dónde estamos',
       whatsappLabel: 'WhatsApp',
@@ -447,7 +448,8 @@ export const esContent: PageContent = {
     },
     form: {
       sectionTitle: 'Envíanos un mensaje',
-      sectionSubtitle: 'Completa el formulario y nuestro equipo se pondrá en contacto contigo.',
+      sectionSubtitle:
+        'Describe tu situación con partners o colaboradores. Te responderemos para entender tu contexto y valorar un diagnóstico inicial sin compromiso.',
     },
     faq: {
       sectionTitle: 'Preguntas frecuentes',

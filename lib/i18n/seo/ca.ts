@@ -2,9 +2,9 @@ import type { SeoContentByLang } from './types';
 
 export const caSeo: SeoContentByLang['ca'] = {
   home: {
-    title: 'Redescomerciales.ai — Activa la teva xarxa comercial B2B',
+    title: 'Redescomerciales.ai — Xarxa indirecta B2B en canal de vendes actiu',
     description:
-      'Transforma col·laboradors i partners en una xarxa de vendes activa. Metodologia, tecnologia i IA per empreses B2B.',
+      'Activem la teva xarxa comercial indirecta per generar oportunitats amb visibilitat del pipeline. Diagnòstic, metodologia i tecnologia per empreses B2B.',
     path: '/',
   },
   solutions: {
@@ -22,11 +22,11 @@ export const caSeo: SeoContentByLang['ca'] = {
   successCases: {
     title: 'Casos d\'èxit en activació de partners B2B | Redescomerciales.ai',
     description:
-      'Resultats en consultoria B2B, SaaS scale-up i portfolios d\'inversió. Mètriques d\'activació de xarxa comercial.',
+      'Experiències d\'activació de xarxa comercial en consultoria B2B, SaaS scale-up i portfolios d\'inversió.',
     path: '/casos-de-exito',
   },
   contact: {
-    title: 'Contacte i diagnòstic gratuït | Redescomerciales.ai',
+    title: 'Contacte i diagnòstic de xarxa comercial | Redescomerciales.ai',
     description:
       'Sol·licita un diagnòstic de la teva xarxa comercial. Oficina a Barcelona. Resposta en 24 hores laborables.',
     path: '/contacto',
@@ -38,7 +38,7 @@ export const caSeo: SeoContentByLang['ca'] = {
   },
   cookies: {
     title: 'Política de cookies | Redescomerciales.ai',
-    description: 'Informació sobre l\'ús de cookies en redescomerciales.ai.',
+    description: 'Informació sobre l\'ús de cookies en redescomerciales.pro.',
     path: '/politica-cookies',
   },
   privacy: {

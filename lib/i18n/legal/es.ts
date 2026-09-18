@@ -164,7 +164,7 @@ export const esLegalContent: LegalSiteContent = {
     {
       type: 'p',
       text:
-        'El sitio web www.redescomerciales.ai (el Sitio Web), propiedad de Redescomerciales.ai, utiliza cookies.',
+        'El sitio web www.redescomerciales.pro (el Sitio Web), propiedad de Redescomerciales.ai, utiliza cookies.',
     },
     {
       type: 'p',
@@ -285,7 +285,7 @@ export const esLegalContent: LegalSiteContent = {
     {
       type: 'p',
       text:
-        '1. Usted está visitando el sitio web redescomerciales.ai propiedad de Redescomerciales.ai, con domicilio social en Avda Diagonal, 523, 1er 2. Barcelona, inscrita en el Registro Mercantil de Barcelona en el tomo 47545, hoja 116, página 555162, (que en dicho documento se denomina << Redescomerciales.ai>>).',
+        '1. Usted está visitando el sitio web redescomerciales.pro propiedad de Redescomerciales.ai, con domicilio social en Avda Diagonal, 523, 1er 2. Barcelona, inscrita en el Registro Mercantil de Barcelona en el tomo 47545, hoja 116, página 555162, (que en dicho documento se denomina << Redescomerciales.ai>>).',
     },
     {
       type: 'p',
@@ -298,7 +298,7 @@ export const esLegalContent: LegalSiteContent = {
     {
       type: 'ul',
       items: [
-        'Teléfono: +34 623 140 545.',
+        'Teléfono: +34 660 688 501.',
         'Correo electrónico de contacto: info@redescomerciales.ai.',
       ],
     },
@@ -322,7 +322,7 @@ export const esLegalContent: LegalSiteContent = {
     {
       type: 'p',
       text:
-        '3. redescomerciales.ai proporciona acceso a multitud de información, servicios, programas o datos (en adelante, “los contenidos”) en Internet pertenecientes a Redescomerciales.ai o a sus licenciantes a los que el USUARIO puede tener acceso.',
+        '3. redescomerciales.pro proporciona acceso a multitud de información, servicios, programas o datos (en adelante, “los contenidos”) en Internet pertenecientes a Redescomerciales.ai o a sus licenciantes a los que el USUARIO puede tener acceso.',
     },
     {
       type: 'p',
@@ -410,7 +410,7 @@ export const esLegalContent: LegalSiteContent = {
     {
       type: 'p',
       text:
-        '8. En caso de que redescomerciales.ai incluya enlaces o hipervínculos a otros sitios web, Redescomerciales.ai no ejercerá ningún tipo de control sobre dichos sitios ni sus contenidos. En ningún caso Redescomerciales.ai asumirá responsabilidad alguna por el contenido de los enlaces a sitios web de terceros, ni garantizará la disponibilidad técnica, la calidad, la fiabilidad, la exactitud, la amplitud, la veracidad, la validez ni la constitucionalidad de ningún material o información contenida en dichos hipervínculos u otros sitios web. Asimismo, la inclusión de estas conexiones externas no implicará ningún tipo de asociación, fusión ni participación con las entidades enlazadas.',
+        '8. En caso de que redescomerciales.pro incluya enlaces o hipervínculos a otros sitios web, Redescomerciales.ai no ejercerá ningún tipo de control sobre dichos sitios ni sus contenidos. En ningún caso Redescomerciales.ai asumirá responsabilidad alguna por el contenido de los enlaces a sitios web de terceros, ni garantizará la disponibilidad técnica, la calidad, la fiabilidad, la exactitud, la amplitud, la veracidad, la validez ni la constitucionalidad de ningún material o información contenida en dichos hipervínculos u otros sitios web. Asimismo, la inclusión de estas conexiones externas no implicará ningún tipo de asociación, fusión ni participación con las entidades enlazadas.',
     },
     { type: 'h2', text: 'Derecho de exclusión' },
     {

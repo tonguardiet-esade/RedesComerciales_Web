@@ -13,7 +13,7 @@ export const caContent: PageContent = {
     openMenu: 'Obrir menú',
   },
   footer: {
-    tagline: 'Transforma col·laboradors en una xarxa de vendes activa mitjançant tecnologia i gestió experta.',
+    tagline: 'Activa, segueix i escala la teva xarxa comercial indirecta amb metodologia, tecnologia i operació experta.',
     address: 'Avda Diagonal, 523, 1er 2. Barcelona',
     explore: 'Explorar',
     legal: 'Legal',
@@ -28,15 +28,15 @@ export const caContent: PageContent = {
       label: '/ Solucions',
       title: 'Ja tens els contactes.',
       titleHighlight: 'El que et falta és el sistema',
-      titleSuffix: 'per convertir-los en vendes.',
+      titleSuffix: 'per convertir-los en oportunitats comercials.',
       subtitle: 'Ajudem CEOs i Directors Comercials d\'empreses B2B a activar la seva xarxa infrautilitzada i escalar sense augmentar costos fixos.',
       ctaSuccessCases: 'Veure casos d\'èxit',
-      ctaDiagnosis: 'Sol·licitar diagnòstic',
+      ctaDiagnosis: 'Sol·licitar diagnòstic de xarxa comercial',
     },
     personas: {
-      sectionTitle: 'Perfils que',
-      sectionTitleHighlight: 'transformem',
-      sectionSubtitle: 'Diferents realitats, un mateix objectiu: monetitzar el capital relacional.',
+      sectionTitle: 'Perfils amb els que',
+      sectionTitleHighlight: 'treballem',
+      sectionSubtitle: 'Mateixa necessitat: activar la xarxa i convertir relacions en oportunitats amb seguiment.',
       labels: {
         company: 'Empresa:',
         responsibility: 'Responsabilitat:',
@@ -67,9 +67,9 @@ export const caContent: PageContent = {
             network: "Extensa però contactes 'dormits'.",
           },
           pains: [
-            'Eliminem la dependència de l\'equip comercial intern.',
-            'Sistematitzem l\'activació de partners.',
-            'Recuperem vendes perdides per falta de seguiment.',
+            'Xarxa extensa amb contactes dormits.',
+            'Partners sense activació sistemàtica.',
+            'Oportunitats que es perden per falta de seguiment.',
           ],
           needs: 'Activar xarxa de contactes i generar canal addicional sense augmentar plantilla.',
           motivations: 'Escalabilitat sense incrementar costos fixos.',
@@ -120,18 +120,18 @@ export const caContent: PageContent = {
           },
           pains: [
             'Organitzem el caos en la gestió d\'oportunitats.',
-            'Aportem traçabilitat total sobre el tancament de leads.',
+            'Falta de seguiment estructurat sobre les oportunitats de la xarxa.',
             'Assegurem el cobrament de comissions de forma transparent.',
           ],
           needs: 'Convertir la capacitat de connectar persones en un model de negoci.',
           motivations: 'Escalar la seva comunitat a un hub de negoci real.',
           objections: 'Els meus membres se sentiran còmodes?',
           values: {
-            tech: 'IA per assignar rols i optimitzar relacions.',
+            tech: 'Seguiment estructurat d\'oportunitats dins de la xarxa.',
             strat: 'Model basat en l\'èxit de la xarxa.',
             ops: 'Facilitat d\'ús i onboarding ràpid.',
           },
-          message: 'Transforma la teva capacitat de connectar persones en ingressos previsibles.',
+          message: 'Organitza les oportunitats de la teva comunitat amb activació i seguiment sistemàtic.',
         },
         {
           id: 3,
@@ -145,9 +145,9 @@ export const caContent: PageContent = {
             network: 'Partners tecnològics i agències.',
           },
           pains: [
-            'Aportem visibilitat total del pipeline indirect.',
-            'Digitalitzem l\'onboarding eliminant fricció manual.',
-            'Convertim el canal partner en font previsible.',
+            'Poc control sobre el pipeline indirect del canal partner.',
+            'Onboarding manual i processos poc homogenis.',
+            'Dificultat per demostrar la tracció del canal indirect.',
           ],
           needs: 'Automatitzar cicle de vida del partner i visibilitat pipeline.',
           motivations: 'Demostrar la predictibilitat del canal indirect.',
@@ -189,8 +189,8 @@ export const caContent: PageContent = {
     },
     coreValues: [
       {
-        title: 'Control Total',
-        desc: 'Saber quines oportunitats existeixen, en quin estat estan i qui les gestiona en temps real.',
+        title: 'Visibilitat del canal indirect',
+        desc: 'Saber què passa a la xarxa, en quin estat estan les oportunitats i qui les gestiona.',
       },
       {
         title: 'Escalabilitat Real',
@@ -204,7 +204,8 @@ export const caContent: PageContent = {
     painPoints: {
       sectionTitle: 'Et resulta',
       sectionTitleHighlight: 'familiar',
-      sectionSubtitle: 'Identifiquem i resolem els colls de botella que frenen el teu creixement.',
+      sectionSubtitle:
+        'Si reconeixes algun d\'aquests problemes, el següent pas és estructurar activació, seguiment i visibilitat de la teva xarxa.',
       groups: [
         {
           title: 'Problemes Estratègics',
@@ -246,8 +247,8 @@ export const caContent: PageContent = {
         {
           category: 'Tecnològics',
           items: [
-            'IA que assigna rols i optimitza relacions',
-            'Automatització de fluxos comercials complexos',
+            'Seguiment sistemàtic de partners i col·laboradors',
+            'Processos homogenis d\'activació i reporte d\'oportunitats',
           ],
         },
       ],
@@ -256,8 +257,8 @@ export const caContent: PageContent = {
     },
     contactBanner: {
       title: 'Preparat per activar la teva xarxa comercial?',
-      text: 'Converteix contactes dormits en un canal de vendes previsible i escalable.',
-      ctaLabel: 'Sol·licitar diagnòstic gratuït',
+      text: 'Converteix contactes dormits en un canal amb activació, visibilitat i seguiment sistemàtic.',
+      ctaLabel: 'Sol·licitar diagnòstic de xarxa comercial',
     },
   },
   successCases: {
@@ -278,20 +279,20 @@ export const caContent: PageContent = {
         challenge: "Xarxa de 2.000 contactes 'dormida' i dependència total del CEO per captació.",
         solution: 'Activació del sistema de Xarxa Comercial Online i gestió automatitzada de referits.',
         results: [
-          '+35% de Leads qualificat en el primer trimestre',
-          'Obertura de 2 mercats internacionals sense delegacions físiques',
-          'Retorn d\'inversió (ROI) del 400% en 6 mesos',
+          'Més leads qualificats des de la xarxa en el primer trimestre',
+          'Obertura de nous mercats internacionals sense delegacions físiques',
+          'Retorn positiu de la inversió en canal indirect',
         ],
-        tags: ['B2B', 'ROI 400%'],
+        tags: ['B2B', 'Canal indirect'],
       },
       {
         title: 'Software SaaS (Scale-up)',
         challenge: 'Programa de partners opac amb falta de predictibilitat en el pipeline.',
-        solution: 'Digitalització de l\'onboarding i traçabilitat total d\'introduccions comercials.',
+        solution: 'Digitalització de l\'onboarding i seguiment estructurat d\'introduccions comercials.',
         results: [
-          'Reducció del 50% en el temps de tancament de vendes indirectes',
-          'Increment del 20% en el MRR provinent de canal',
-          'Visibilitat 100% sobre les gestions de cada partner',
+          'Reducció notable del temps de tancament de vendes indirectes',
+          'Major contribució del canal a l\'ingrés recurrent',
+          'Visibilitat sobre les gestions de cada partner',
         ],
         tags: ['SaaS', 'Partners'],
       },
@@ -300,8 +301,8 @@ export const caContent: PageContent = {
         challenge: 'Nul·la sinergia comercial entre les 12 participades del fons.',
         solution: 'Creació d\'un HUB comercial compartit basat en la metodologia Redescomerciales.ai.',
         results: [
-          '8 vendes creuades generades de forma orgànica en un any',
-          'Reducció del cost d\'adquisició (CAC) en un 15%',
+          'Vendes creuades generades de forma orgànica entre participades',
+          'Reducció del cost d\'adquisició en el canal indirect',
           'Acceleració del creixement en empreses estancades',
         ],
         tags: ['Portfolio', 'HUB'],
@@ -311,15 +312,15 @@ export const caContent: PageContent = {
       sectionTitle: 'Mètriques que',
       sectionTitleHighlight: 'parlen',
       items: [
-        { val: '+40%', label: 'Activació de partners' },
-        { val: '+250', label: 'Leads generats' },
-        { val: '400%', label: 'ROI mitjà' },
+        { val: 'Activació', label: 'Sistemàtica de partners i col·laboradors' },
+        { val: 'Visibilitat', label: 'Del pipeline indirect' },
+        { val: 'Oportunitats', label: 'Generades des de la xarxa comercial' },
       ],
     },
     contactBanner: {
       title: 'Vols ser el proper cas d\'èxit?',
-      text: 'Activa avui mateix la teva xarxa comercial i comença a veure resultats mesurables en menys de 90 dies.',
-      ctaLabel: 'Sol·licitar auditoria de xarxa',
+      text: 'Activa la teva xarxa comercial indirecta i comença a veure indicadors temprans d\'activació.',
+      ctaLabel: 'Sol·licitar diagnòstic de xarxa comercial',
     },
   },
   methodology: {
@@ -327,7 +328,7 @@ export const caContent: PageContent = {
       label: '/ Metodologia',
       title: 'La nostra',
       titleHighlight: 'metodologia',
-      subtitle: 'Un sistema provat per transformar xarxes comercials passives en canals de venda actius i escalables.',
+      subtitle: 'Quatre fases per activar xarxes comercials passives i convertir-les en canals amb seguiment i visibilitat.',
     },
     intro: 'Un enfocament',
     introHighlight: 'sistemàtic',
@@ -395,7 +396,7 @@ export const caContent: PageContent = {
         title: 'Fase 4 – Seguiment i Optimització',
         desc: 'Implementem un sistema d\'anàlisi continu que ens permet mesurar de forma precisa l\'efectivitat de la xarxa i optimitzar cadascun dels seus processos. Aquesta fase és clau per assegurar el creixement sostingut i la millora constant del rendiment.',
         longDesc:
-          'A través d\'eines d\'analítica avançada:\n\n• Monitoritzem en temps real el comportament dels col·laboradors, identificant patrons, colls de botella i oportunitats de millora.\n• Avaluem el rendiment de cada etapa del flux de treball per detectar ineficiències i aplicar ajustos estratègics.\n• Prendem decisions basades en dades reals, el que ens permet adaptar ràpidament les estratègies davant canvis de l\'entorn o del mercat.\n\nAquest enfocament dinàmic garanteix que la teva xarxa no només funcioni correctament, sinó que evolucioni de forma contínua, assolint nivells cada vegada més alts d\'eficiència i rendibilitat.',
+          'A través d\'eines d\'analítica avançada:\n\n• Monitoritzem en temps real el comportament dels col·laboradors, identificant patrons, colls de botella i oportunitats de millora.\n• Avaluem el rendiment de cada etapa del flux de treball per detectar ineficiències i aplicar ajustos estratègics.\n• Prendem decisions basades en dades reals, el que ens permet adaptar ràpidament les estratègies davant canvis de l\'entorn o del mercat.\n\nAquest enfocament permet revisar què funciona a la xarxa, ajustar l\'execució i millorar el seguiment del canal indirect.',
         visualTitle:
           'Aquí podem veure exemples d\'anuncis que realitzaríem per tenir un seguiment dels nostres clients, recolzant-los i acompanyant-los en tot el procés:',
         imagesCount: 2,
@@ -404,7 +405,7 @@ export const caContent: PageContent = {
     contactBanner: {
       title: 'Preparat per activar la teva xarxa?',
       text: 'La nostra metodologia s\'adapta a les necessitats específiques del teu sector i tipus de producte.',
-      ctaLabel: 'Sol·licitar auditoria de xarxa',
+      ctaLabel: 'Sol·licitar diagnòstic de xarxa comercial',
     },
   },
   contact: {
@@ -413,7 +414,7 @@ export const caContent: PageContent = {
       label: '/ Contacte',
       title: 'Parlem de la teva xarxa comercial',
       subtitle:
-        'Explica\'ns el teu context i et respondrem en menys de 24 hores amb una proposta adaptada a la teva empresa.',
+        'Explica\'ns el teu context. Et contactarem en menys de 24 hores laborables per entendre la teva xarxa i valorar un diagnòstic inicial.',
     },
     paths: {
       sectionTitle: 'Tens alguna pregunta?',
@@ -439,7 +440,7 @@ export const caContent: PageContent = {
       locationLabel: 'Ubicació',
       addressLabel: 'Adreça',
       emailLabel: 'Correu electrònic',
-      phoneLabel: 'Telèfon',
+      phoneLabel: 'Telèfon / WhatsApp',
       hoursLabel: 'Horari d\'atenció',
       mapTitle: 'On som',
       whatsappLabel: 'WhatsApp',
@@ -447,7 +448,8 @@ export const caContent: PageContent = {
     },
     form: {
       sectionTitle: 'Envia\'ns un missatge',
-      sectionSubtitle: 'Completa el formulari i el nostre equip es posarà en contacte amb tu.',
+      sectionSubtitle:
+        'Descriu la teva situació amb partners o col·laboradors. Et respondrem per entendre el teu context i valorar un diagnòstic inicial sense compromís.',
     },
     faq: {
       sectionTitle: 'Preguntes freqüents',

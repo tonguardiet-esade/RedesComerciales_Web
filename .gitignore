@@ -10,6 +10,15 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+
+# HTML estático generado por seoHtmlPlugin (se regenera en dev/build)
+/soluciones/index.html
+/metodologia/index.html
+/casos-de-exito/index.html
+/contacto/index.html
+/aviso-legal/index.html
+/politica-cookies/index.html
+/politica-privacidad/index.html
 *.local
 
 # Variables de entorno (nunca commitear secretos)

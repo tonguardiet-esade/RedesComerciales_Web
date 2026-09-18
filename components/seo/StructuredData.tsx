@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useSettings } from '../../context/SettingsContext';
 import { getPageSeo, getSeoKeyFromPath } from '../../lib/i18n/seo';
 import type { AppLanguage } from '../../lib/i18n/types';
+import { getBreadcrumbItems } from '../../lib/seo/breadcrumbs';
 import {
   buildBreadcrumbSchema,
   buildContactPageSchema,
@@ -14,11 +15,10 @@ import {
 } from '../../lib/seo/schema';
 
 interface StructuredDataProps {
-  breadcrumbs?: Array<{ name: string; path: string }>;
   faqItems?: Array<{ question: string; answer: string }>;
 }
 
-const StructuredData = ({ breadcrumbs, faqItems }: StructuredDataProps) => {
+const StructuredData = ({ faqItems }: StructuredDataProps) => {
   const { pathname } = useLocation();
   const { lang } = useSettings();
   const contentLang = (['es', 'en', 'ca'].includes(lang) ? lang : 'es') as AppLanguage;
@@ -50,6 +50,7 @@ const StructuredData = ({ breadcrumbs, faqItems }: StructuredDataProps) => {
     schemas.push(buildFaqPageSchema(faqItems));
   }
 
+  const breadcrumbs = getBreadcrumbItems(pathname, contentLang);
   if (breadcrumbs?.length) {
     schemas.push(buildBreadcrumbSchema(breadcrumbs));
   }

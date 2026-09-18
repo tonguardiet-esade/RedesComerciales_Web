@@ -136,7 +136,7 @@ export const enLegalContent: LegalSiteContent = {
     { type: 'h2', text: '1. Use of cookies' },
     {
       type: 'p',
-      text: 'The website www.redescomerciales.ai (the Website), owned by Redescomerciales.ai, uses cookies.',
+      text: 'The website www.redescomerciales.pro (the Website), owned by Redescomerciales.ai, uses cookies.',
     },
     {
       type: 'p',
@@ -240,7 +240,7 @@ export const enLegalContent: LegalSiteContent = {
     { type: 'h2', text: 'Identification details' },
     {
       type: 'p',
-      text: '1. You are visiting the website redescomerciales.ai owned by Redescomerciales.ai, with registered office at Avda Diagonal, 523, 1er 2. Barcelona, registered in the Barcelona Commercial Register in volume 47545, sheet 116, page 555162 (referred to in that document as << Redescomerciales.ai>>).',
+      text: '1. You are visiting the website redescomerciales.pro owned by Redescomerciales.ai, with registered office at Avda Diagonal, 523, 1er 2. Barcelona, registered in the Barcelona Commercial Register in volume 47545, sheet 116, page 555162 (referred to in that document as << Redescomerciales.ai>>).',
     },
     {
       type: 'p',
@@ -252,7 +252,7 @@ export const enLegalContent: LegalSiteContent = {
     },
     {
       type: 'ul',
-      items: ['Telephone: +34 623 140 545.', 'Contact email: info@redescomerciales.ai.'],
+      items: ['Telephone: +34 660 688 501.', 'Contact email: info@redescomerciales.ai.'],
     },
     { type: 'h2', text: 'Web hosting' },
     { type: 'p', text: 'Webempresa Europa SL' },
@@ -271,7 +271,7 @@ export const enLegalContent: LegalSiteContent = {
     { type: 'h2', text: 'Use of the portal' },
     {
       type: 'p',
-      text: '3. redescomerciales.ai provides access to a multitude of information, services, programmes or data (hereinafter, "the contents") on the Internet belonging to Redescomerciales.ai or its licensors to which the USER may have access.',
+      text: '3. redescomerciales.pro provides access to a multitude of information, services, programmes or data (hereinafter, "the contents") on the Internet belonging to Redescomerciales.ai or its licensors to which the USER may have access.',
     },
     {
       type: 'p',
@@ -347,7 +347,7 @@ export const enLegalContent: LegalSiteContent = {
     { type: 'h2', text: 'Links' },
     {
       type: 'p',
-      text: '8. Where redescomerciales.ai includes links or hyperlinks to other websites, Redescomerciales.ai will exercise no control over such sites or their contents. Under no circumstances will Redescomerciales.ai assume any liability for the content of links to third-party websites, nor guarantee the technical availability, quality, reliability, accuracy, scope, truthfulness, validity or constitutionality of any material or information contained in such hyperlinks or other websites. Likewise, the inclusion of these external connections will not imply any association, merger or participation with the linked entities.',
+      text: '8. Where redescomerciales.pro includes links or hyperlinks to other websites, Redescomerciales.ai will exercise no control over such sites or their contents. Under no circumstances will Redescomerciales.ai assume any liability for the content of links to third-party websites, nor guarantee the technical availability, quality, reliability, accuracy, scope, truthfulness, validity or constitutionality of any material or information contained in such hyperlinks or other websites. Likewise, the inclusion of these external connections will not imply any association, merger or participation with the linked entities.',
     },
     { type: 'h2', text: 'Right of exclusion' },
     {

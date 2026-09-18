@@ -3,9 +3,9 @@ import { TrendingUp } from 'lucide-react';
 import { useSettings } from '../../context/SettingsContext';
 
 const PIPELINE_ITEMS = [
-  { icon: 'B2', name: 'Partner B2B', val: '45.000€', tagKey: 'hero.pipeline.tag.close', color: 'green' as const, progress: 85 },
-  { icon: 'Lo', name: 'Logistics Pro', val: '12.500€', tagKey: 'hero.pipeline.tag.validation', color: 'blue' as const, progress: 40 },
-  { icon: 'Gl', name: 'Global Retail', val: '89.000€', tagKey: 'hero.pipeline.tag.proposal', color: 'red' as const, progress: 20 },
+  { icon: 'B2', name: 'Partner B2B', statusKey: 'hero.pipeline.status.close', tagKey: 'hero.pipeline.tag.close', color: 'green' as const, progress: 85 },
+  { icon: 'Lo', name: 'Logistics Pro', statusKey: 'hero.pipeline.status.validation', tagKey: 'hero.pipeline.tag.validation', color: 'blue' as const, progress: 40 },
+  { icon: 'Gl', name: 'Global Retail', statusKey: 'hero.pipeline.status.proposal', tagKey: 'hero.pipeline.tag.proposal', color: 'red' as const, progress: 20 },
 ];
 
 const colorMap = {
@@ -78,7 +78,7 @@ const HeroPipelineCard = () => {
                         {item.name}
                       </h4>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="text-[11px] font-bold text-mosaic-black-300 shrink-0">{item.val}</span>
+                        <span className="text-[11px] font-bold text-mosaic-black-300 shrink-0">{t(item.statusKey)}</span>
                         <div className="w-16 h-1 bg-mosaic-white-300 rounded-full overflow-hidden">
                           <div className={`h-full ${colors.bar}`} style={{ width: `${item.progress}%` }} />
                         </div>

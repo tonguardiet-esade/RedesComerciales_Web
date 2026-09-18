@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-
 Disallow: /login
 Disallow: /registro
 Disallow: /portal
@@ -17,4 +16,22 @@ Disallow: /update-password
 Disallow: /unirse-invitado
 Disallow: /acceso-denegado
 
-Sitemap: https://redescomerciales.ai/sitemap.xml
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://redescomerciales.pro/sitemap.xml

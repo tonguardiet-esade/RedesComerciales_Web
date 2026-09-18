@@ -2,9 +2,9 @@ import type { SeoContentByLang } from './types';
 
 export const esSeo: SeoContentByLang['es'] = {
   home: {
-    title: 'Redescomerciales.ai — Activa tu red comercial B2B en canal de ventas',
+    title: 'Redescomerciales.ai — Red indirecta B2B en canal de ventas activo',
     description:
-      'Transforma colaboradores y partners en una red de ventas activa. Metodología, tecnología e IA para empresas B2B en España.',
+      'Activamos tu red comercial indirecta para generar oportunidades con visibilidad del pipeline. Diagnóstico, metodología y tecnología para empresas B2B.',
     path: '/',
   },
   solutions: {
@@ -22,11 +22,11 @@ export const esSeo: SeoContentByLang['es'] = {
   successCases: {
     title: 'Casos de éxito en activación de partners B2B | Redescomerciales.ai',
     description:
-      'Resultados reales en consultoría B2B, SaaS scale-up y portfolios de inversión. Métricas de activación de red comercial.',
+      'Experiencias de activación de red comercial en consultoría B2B, SaaS scale-up y portfolios de inversión.',
     path: '/casos-de-exito',
   },
   contact: {
-    title: 'Contacto y diagnóstico gratuito | Redescomerciales.ai',
+    title: 'Contacto y diagnóstico de red comercial | Redescomerciales.ai',
     description:
       'Solicita un diagnóstico de tu red comercial. Oficina en Barcelona. Respuesta en 24 horas laborables.',
     path: '/contacto',
@@ -38,7 +38,7 @@ export const esSeo: SeoContentByLang['es'] = {
   },
   cookies: {
     title: 'Política de cookies | Redescomerciales.ai',
-    description: 'Información sobre el uso de cookies en redescomerciales.ai.',
+    description: 'Información sobre el uso de cookies en redescomerciales.pro.',
     path: '/politica-cookies',
   },
   privacy: {

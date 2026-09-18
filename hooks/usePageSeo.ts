@@ -8,12 +8,14 @@ import {
 } from '../lib/i18n/seo';
 import type { AppLanguage } from '../lib/i18n/types';
 import {
-  LOCALE_HREFLANG,
   OG_IMAGE,
+  OG_IMAGE_ALT,
+  OG_IMAGE_HEIGHT,
+  OG_IMAGE_WIDTH,
   OG_LOCALE,
   SITE_NAME,
   SITE_URL,
-  SUPPORTED_LOCALES,
+  THEME_COLOR,
 } from '../lib/seo/site';
 
 function upsertMeta(attr: 'name' | 'property', key: string, content: string) {
@@ -66,6 +68,7 @@ export function usePageSeo() {
     const title = seo.title;
     const description = seo.description;
 
+    document.documentElement.lang = contentLang;
     document.title = title;
     upsertMeta('name', 'description', description);
     upsertMeta('property', 'og:title', title);
@@ -74,7 +77,11 @@ export function usePageSeo() {
     upsertMeta('property', 'og:url', canonicalUrl);
     upsertMeta('property', 'og:site_name', SITE_NAME);
     upsertMeta('property', 'og:image', OG_IMAGE);
+    upsertMeta('property', 'og:image:width', OG_IMAGE_WIDTH);
+    upsertMeta('property', 'og:image:height', OG_IMAGE_HEIGHT);
+    upsertMeta('property', 'og:image:alt', OG_IMAGE_ALT);
     upsertMeta('property', 'og:locale', OG_LOCALE[contentLang] ?? 'es_ES');
+    upsertMeta('name', 'theme-color', THEME_COLOR);
     upsertMeta('name', 'twitter:card', 'summary_large_image');
     upsertMeta('name', 'twitter:title', title);
     upsertMeta('name', 'twitter:description', description);
@@ -87,13 +94,7 @@ export function usePageSeo() {
       upsertLink('canonical', canonicalUrl);
     }
 
+    // Sin hreflang: el idioma cambia en cliente sin URLs distintas por locale.
     removeHreflangLinks();
-    if (!noindex && routeKey) {
-      SUPPORTED_LOCALES.forEach((locale) => {
-        const hreflang = LOCALE_HREFLANG[locale];
-        upsertLink('alternate', canonicalUrl, { hreflang });
-      });
-      upsertLink('alternate', canonicalUrl, { hreflang: 'x-default' });
-    }
   }, [pathname, contentLang]);
 }

@@ -2,9 +2,9 @@
 export const CONTACT_INFO = {
   companyName: 'Redescomerciales.ai',
   email: 'info@redescomerciales.ai',
-  phone: '+34 623 140 545',
-  /** Enlace wa.me — añadir cuando esté disponible */
-  whatsapp: null as string | null,
+  phone: '+34 660 688 501',
+  /** Número para enlaces wa.me (solo dígitos, con prefijo país) */
+  whatsappPhone: '34660688501',
   address: 'Avda Diagonal, 523, 1er 2. Barcelona',
   city: 'Barcelona, España',
   mapQuery: 'Avda Diagonal, 523, Barcelona',

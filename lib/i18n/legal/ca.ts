@@ -136,7 +136,7 @@ export const caLegalContent: LegalSiteContent = {
     { type: 'h2', text: '1. Ús de cookies' },
     {
       type: 'p',
-      text: 'El lloc web www.redescomerciales.ai (el Lloc Web), propietat de Redescomerciales.ai, utilitza cookies.',
+      text: 'El lloc web www.redescomerciales.pro (el Lloc Web), propietat de Redescomerciales.ai, utilitza cookies.',
     },
     {
       type: 'p',
@@ -248,7 +248,7 @@ export const caLegalContent: LegalSiteContent = {
     { type: 'h2', text: 'Dades d\'identificació' },
     {
       type: 'p',
-      text: '1. Esteu visitant el lloc web redescomerciales.ai propietat de Redescomerciales.ai, amb domicili social a Avda Diagonal, 523, 1er 2. Barcelona, inscrita al Registre Mercantil de Barcelona al tom 47545, full 116, pàgina 555162, (que en dit document es denomina << Redescomerciales.ai>>).',
+      text: '1. Esteu visitant el lloc web redescomerciales.pro propietat de Redescomerciales.ai, amb domicili social a Avda Diagonal, 523, 1er 2. Barcelona, inscrita al Registre Mercantil de Barcelona al tom 47545, full 116, pàgina 555162, (que en dit document es denomina << Redescomerciales.ai>>).',
     },
     {
       type: 'p',
@@ -261,7 +261,7 @@ export const caLegalContent: LegalSiteContent = {
     {
       type: 'ul',
       items: [
-        'Telèfon: +34 623 140 545.',
+        'Telèfon: +34 660 688 501.',
         'Correu electrònic de contacte: info@redescomerciales.ai.',
       ],
     },
@@ -282,7 +282,7 @@ export const caLegalContent: LegalSiteContent = {
     { type: 'h2', text: 'Ús del portal' },
     {
       type: 'p',
-      text: '3. redescomerciales.ai proporciona accés a una multitud d\'informació, serveis, programes o dades (d\'ara endavant, "els continguts") a Internet pertanyents a Redescomerciales.ai o als seus llicenciants als quals l\'USUARI pot tenir accés.',
+      text: '3. redescomerciales.pro proporciona accés a una multitud d\'informació, serveis, programes o dades (d\'ara endavant, "els continguts") a Internet pertanyents a Redescomerciales.ai o als seus llicenciants als quals l\'USUARI pot tenir accés.',
     },
     {
       type: 'p',
@@ -358,7 +358,7 @@ export const caLegalContent: LegalSiteContent = {
     { type: 'h2', text: 'Enllaços' },
     {
       type: 'p',
-      text: '8. En cas que redescomerciales.ai inclogui enllaços o hipervincles a altres llocs web, Redescomerciales.ai no exercirà cap tipus de control sobre aquests llocs ni sobre els seus continguts. En cap cas Redescomerciales.ai assumirà responsabilitat alguna pel contingut dels enllaços a llocs web de tercers, ni garantirà la disponibilitat tècnica, la qualitat, la fiabilitat, l\'exactitud, l\'amplitud, la veracitat, la validesa ni la constitucionalitat de cap material o informació continguda en aquests hipervincles o altres llocs web. Així mateix, la inclusió d\'aquestes connexions externes no implicarà cap tipus d\'associació, fusió ni participació amb les entitats enllaçades.',
+      text: '8. En cas que redescomerciales.pro inclogui enllaços o hipervincles a altres llocs web, Redescomerciales.ai no exercirà cap tipus de control sobre aquests llocs ni sobre els seus continguts. En cap cas Redescomerciales.ai assumirà responsabilitat alguna pel contingut dels enllaços a llocs web de tercers, ni garantirà la disponibilitat tècnica, la qualitat, la fiabilitat, l\'exactitud, l\'amplitud, la veracitat, la validesa ni la constitucionalitat de cap material o informació continguda en aquests hipervincles o altres llocs web. Així mateix, la inclusió d\'aquestes connexions externes no implicarà cap tipus d\'associació, fusió ni participació amb les entitats enllaçades.',
     },
     { type: 'h2', text: 'Dret d\'exclusió' },
     {

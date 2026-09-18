@@ -22,7 +22,7 @@ const Landing = () => {
   const heroRef = useRef<HTMLElement>(null);
   useLandingScrollEffects(pageRef);
 
-  const faqItems = useFaqItems();
+  const faqItems = useFaqItems(10);
 
   useEffect(() => {
     const hero = heroRef.current;
