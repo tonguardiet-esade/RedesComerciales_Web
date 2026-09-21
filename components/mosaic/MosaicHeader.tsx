@@ -180,8 +180,11 @@ const MosaicHeader = () => {
               {lang} {timeStr}
             </span>
 
-            {!user && <WhatsAppButton variant="nav-mobile" />}
-            {!user && <WhatsAppButton variant="nav" />}
+            {!user && (
+              <div className="hidden min-[1100px]:block">
+                <WhatsAppButton variant="nav" />
+              </div>
+            )}
 
             {user ? (
               <button
@@ -255,6 +258,12 @@ const MosaicHeader = () => {
                 {item.label}
               </Link>
             ))}
+            {!user && (
+              <WhatsAppButton
+                variant="nav-menu"
+                onClick={() => setMenuOpen(false)}
+              />
+            )}
             <a
               href={EXTERNAL_LINKS.sales}
               target="_blank"

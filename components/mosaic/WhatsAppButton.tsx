@@ -3,16 +3,17 @@ import { ANALYTICS_EVENTS, trackEvent } from '../../lib/analytics';
 import { getWhatsAppUrl } from '../../lib/whatsapp';
 import WhatsAppIcon from './WhatsAppIcon';
 
-type WhatsAppVariant = 'float' | 'nav' | 'nav-mobile' | 'block';
+type WhatsAppVariant = 'float' | 'nav' | 'nav-menu' | 'block';
 
 interface WhatsAppButtonProps {
   variant: WhatsAppVariant;
   labelKey?: 'whatsapp.nav' | 'whatsapp.cta';
   className?: string;
+  onClick?: () => void;
 }
 
 const PILL_BASE =
-  'inline-flex items-center justify-center gap-2 bg-[#25D366] text-white border border-[#25D366] font-semibold no-underline transition-[transform,background,box-shadow] duration-200 hover:bg-[#1ebe57] hover:border-[#1ebe57] hover:text-white mosaic-focus-ring';
+  'items-center justify-center gap-2 bg-[#25D366] text-white border border-[#25D366] font-semibold no-underline transition-[transform,background,box-shadow] duration-200 hover:bg-[#1ebe57] hover:border-[#1ebe57] hover:text-white mosaic-focus-ring';
 
 const FLOAT_CLASSES = [
   'fixed z-[60] inline-flex items-center justify-center',
@@ -29,14 +30,14 @@ const FLOAT_CLASSES = [
 
 const PILL_VARIANT_CLASSES: Record<Exclude<WhatsAppVariant, 'float'>, string> = {
   nav: 'hidden min-[1100px]:inline-flex px-3.5 py-2 text-xs rounded-full',
-  'nav-mobile': 'inline-flex min-[1100px]:hidden px-3 py-1.5 text-xs rounded-full',
-  block: 'w-full py-3 px-4 rounded-md',
+  'nav-menu': 'inline-flex self-start px-4 py-2.5 text-sm rounded-full',
+  block: 'inline-flex w-full py-3 px-4 rounded-md',
 };
 
 const ICON_SIZE: Record<WhatsAppVariant, number> = {
   float: 28,
   nav: 16,
-  'nav-mobile': 18,
+  'nav-menu': 18,
   block: 18,
 };
 
@@ -44,6 +45,7 @@ const WhatsAppButton = ({
   variant,
   labelKey = 'whatsapp.nav',
   className = '',
+  onClick,
 }: WhatsAppButtonProps) => {
   const { lang, t } = useSettings();
   const href = getWhatsAppUrl(lang);
@@ -51,6 +53,7 @@ const WhatsAppButton = ({
 
   const handleClick = () => {
     trackEvent(ANALYTICS_EVENTS.ctaClick, { location: `whatsapp_${variant}` });
+    onClick?.();
   };
 
   const icon = <WhatsAppIcon size={ICON_SIZE[variant]} />;
