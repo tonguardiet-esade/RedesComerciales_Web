@@ -4,8 +4,8 @@ import type { SeoRouteKey } from '../i18n/seo/types';
 import { CRAWLER_CONTENT_ES } from './crawlerContent';
 import { SITE_NAME, SITE_URL } from './site';
 
-function buildContactPoints() {
-  const points = [
+function buildContactPoints(): Array<Record<string, unknown>> {
+  const points: Array<Record<string, unknown>> = [
     {
       '@type': 'ContactPoint',
       contactType: 'customer service',

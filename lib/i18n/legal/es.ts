@@ -164,7 +164,7 @@ export const esLegalContent: LegalSiteContent = {
     {
       type: 'p',
       text:
-        'El sitio web www.redescomerciales.pro (el Sitio Web), propiedad de Redescomerciales.ai, utiliza cookies.',
+        'El sitio web redescomerciales.pro (el Sitio Web), propiedad de Redescomerciales.ai, utiliza cookies.',
     },
     {
       type: 'p',

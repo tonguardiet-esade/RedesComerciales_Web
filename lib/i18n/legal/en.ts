@@ -136,7 +136,7 @@ export const enLegalContent: LegalSiteContent = {
     { type: 'h2', text: '1. Use of cookies' },
     {
       type: 'p',
-      text: 'The website www.redescomerciales.pro (the Website), owned by Redescomerciales.ai, uses cookies.',
+      text: 'The website redescomerciales.pro (the Website), owned by Redescomerciales.ai, uses cookies.',
     },
     {
       type: 'p',

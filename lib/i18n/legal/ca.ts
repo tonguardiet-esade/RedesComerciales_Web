@@ -136,7 +136,7 @@ export const caLegalContent: LegalSiteContent = {
     { type: 'h2', text: '1. Ús de cookies' },
     {
       type: 'p',
-      text: 'El lloc web www.redescomerciales.pro (el Lloc Web), propietat de Redescomerciales.ai, utilitza cookies.',
+      text: 'El lloc web redescomerciales.pro (el Lloc Web), propietat de Redescomerciales.ai, utilitza cookies.',
     },
     {
       type: 'p',

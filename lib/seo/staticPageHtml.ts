@@ -58,14 +58,14 @@ function buildFaqHtml(faq: CrawlerPageContent['faq']): string {
       </section>`;
 }
 
-export function buildCrawlerNoscript(routeKey: SeoRouteKey): string {
+/** HTML semántico inicial dentro de #root para crawlers sin JavaScript. */
+export function buildCrawlerStaticShell(routeKey: SeoRouteKey): string {
   const content = CRAWLER_CONTENT_ES[routeKey];
   const nav = CRAWLER_NAV_LINKS.map(
     (link) => `<li><a href="${link.href}">${escapeHtml(link.label)}</a></li>`
   ).join('\n        ');
 
-  return `<noscript>
-    <header>
+  return `<header>
       <p><strong>${escapeHtml(SITE_NAME)}</strong></p>
       <nav aria-label="Navegación principal">
         <ul>
@@ -78,12 +78,10 @@ export function buildCrawlerNoscript(routeKey: SeoRouteKey): string {
       <p>${escapeHtml(content.intro)}</p>
       ${buildSectionsHtml(content.sections)}
       ${buildFaqHtml(content.faq)}
-    </main>
-  </noscript>`;
+    </main>`;
 }
 
 export function buildJsonLdScripts(routeKey: SeoRouteKey): string {
-  const seo = esSeo[routeKey];
   const schemas = buildStaticRouteSchemas(routeKey);
 
   return schemas
@@ -106,7 +104,7 @@ export function buildCommonHeadMeta(): string {
 export function buildRouteHtml(routeKey: SeoRouteKey): string {
   const seo = esSeo[routeKey];
   const canonical = `${SITE_URL}${seo.path}`;
-  const noscript = buildCrawlerNoscript(routeKey);
+  const shell = buildCrawlerStaticShell(routeKey);
   const jsonLd = buildJsonLdScripts(routeKey);
   const headExtras = buildCommonHeadMeta();
 
@@ -144,19 +142,23 @@ ${jsonLd}
     </script>
   </head>
   <body class="bg-mosaic-white-200 text-mosaic-black-500 antialiased">
-    ${noscript}
-    <div id="root"></div>
+    <div id="root">${shell}</div>
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>
 `;
 }
 
+export function injectHomeRootShell(html: string): string {
+  const shell = buildCrawlerStaticShell('home');
+  const withoutNoscript = html.replace(/<noscript>[\s\S]*?<\/noscript>\s*/i, '');
+  return withoutNoscript.replace(
+    /<div id="root">\s*<\/div>/i,
+    `<div id="root">${shell}</div>`
+  );
+}
+
 /** Schemas estáticos para la home (index.html fuente). */
 export function buildHomeJsonLdScripts(): string {
   return buildJsonLdScripts('home');
-}
-
-export function buildHomeNoscript(): string {
-  return buildCrawlerNoscript('home');
 }

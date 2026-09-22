@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import type { Plugin } from 'vite';
 import type { SeoRouteKey } from '../lib/i18n/seo/types';
-import { buildRouteHtml } from '../lib/seo/staticPageHtml';
+import { buildRouteHtml, injectHomeRootShell } from '../lib/seo/staticPageHtml';
 
 const ROUTE_ENTRIES: Array<{ routeKey: SeoRouteKey; outDir: string }> = [
   { routeKey: 'solutions', outDir: 'soluciones' },
@@ -36,6 +36,9 @@ export function seoHtmlPlugin(): Plugin {
     },
     configureServer() {
       writeRouteHtmlFiles(rootDir);
+    },
+    transformIndexHtml(html) {
+      return injectHomeRootShell(html);
     },
   };
 }
